@@ -8,6 +8,7 @@ import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import android.widget.EditText
 import android.widget.Toast
+import kotlinx.android.synthetic.main.activity_main.*
 import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
@@ -29,6 +30,15 @@ class ResultActivity: AppCompatActivity()
 
         openAlert()
 
+        val context = this
+
+        val db = DataBaseHandler(context)
+
+        val list:MutableList<Score> = db.getFirstScore()
+
+        firstScore.text = list.get(0).score.toString()
+        secondScore.text = list.get(1).score.toString()
+        thirdScore.text = list.get(2).score.toString()
 
 
     }
