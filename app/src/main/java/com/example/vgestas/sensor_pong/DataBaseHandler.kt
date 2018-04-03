@@ -47,22 +47,108 @@ class DataBaseHandler (private val context: Context) : SQLiteOpenHelper(context,
         }
     }
 
-    fun selectUsername(): String
-    {
-        var username: String = ""
+    fun selectScoreList(): MutableList<Score> {
+        var listScore: MutableList<Score> = ArrayList()
         val db = this.readableDatabase
-        val query = "Select username from " + TABLE_NAME + " where username=\"vinc\""
+        val query = "Select * from " + TABLE_NAME
         val result = db.rawQuery(query, null)
 
-        if(result.count != -1)
-        {
-            result.moveToFirst()
-            username = result.getString(0)
+        if (result.moveToFirst()) {
+            do {
+                var score = Score()
+                score.id = result.getString(result.getColumnIndex(COL_ID)).toInt()
+                score.username = result.getString(result.getColumnIndex(COL_USERNAME))
+                score.score = result.getString(result.getColumnIndex(COL_SCORE)).toInt()
+                score.date = result.getString(result.getColumnIndex(COL_DATE))
+                listScore.add(score)
+            } while (result.moveToNext())
         }
 
         result.close()
         db.close()
 
-        return username
+        return listScore
+    }
+
+        fun selectScoreListByUsername(username:String): MutableList<Score>
+        {
+            var listScoreUser: MutableList<Score> = ArrayList()
+            val db = this.readableDatabase
+            val query = "Select * from " + TABLE_NAME + " where " + COL_USERNAME + " LIKE '" + username + "'"
+            val result = db.rawQuery(query, null)
+
+            if(result.moveToFirst())
+            {
+                do
+                {
+                    var score = Score()
+                    score.id = result.getString(result.getColumnIndex(COL_ID)).toInt()
+                    score.username = result.getString(result.getColumnIndex(COL_USERNAME))
+                    score.score = result.getString(result.getColumnIndex(COL_SCORE)).toInt()
+                    score.date = result.getString(result.getColumnIndex(COL_DATE))
+                    listScoreUser.add(score)
+                } while (result.moveToNext())
+            }
+
+        result.close()
+        db.close()
+
+        return listScoreUser
+    }
+
+    fun updateDate()
+    {
+        val db = this.writableDatabase
+        val query = "Select * from " + TABLE_NAME
+        val result = db.rawQuery(query, null)
+
+        if(result.moveToFirst())
+        {
+            do
+            {
+                var cv = ContentValues()
+                cv.put(COL_SCORE, result.getInt(result.getColumnIndex(COL_SCORE)+2))
+                db.update(TABLE_NAME, cv, COL_ID + "=? AND "+ COL_USERNAME + "=?",
+                        arrayOf(result.getString(result.getColumnIndex(COL_ID)),
+                                result.getString(result.getColumnIndex(COL_USERNAME))))
+
+            } while (result.moveToNext())
+        }
+
+        result.close()
+        db.close()
+    }
+
+    fun getFirstScore() : MutableList<Score>
+    {
+        var listBestScore:MutableList<Score> = ArrayList()
+        var listScore:MutableList<Score> = ArrayList()
+        val db = this.readableDatabase
+        val query = "Select " + COL_USERNAME + ", " + COL_SCORE + " From " + TABLE_NAME
+        val result = db.rawQuery(query, null)
+
+        if(result.moveToFirst())
+        {
+            do
+            {
+                var score = Score()
+                score.username = result.getString(result.getColumnIndex(COL_USERNAME))
+                score.score = result.getString(result.getColumnIndex(COL_SCORE)).toInt()
+                listScore.add(score)
+            } while (result.moveToNext())
+
+            listScore.sortByDescending { it.score }
+
+            var index = 0
+            while (index < 3)
+            {
+                listBestScore.add(listScore.get(index))
+                index ++
+            }
+        }
+
+        result.close()
+        db.close()
+        return listBestScore
     }
 }

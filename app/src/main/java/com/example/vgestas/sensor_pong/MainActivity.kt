@@ -1,5 +1,6 @@
 package com.example.vgestas.sensor_pong
 
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_main.*
@@ -12,12 +13,24 @@ class MainActivity : AppCompatActivity() {
 
         val context = this
 
-       // val score = Score(120, "vinc", "10/10/2010")
-        var db = DataBaseHandler(context)
-        //db.insertData(score)
+        val db = DataBaseHandler(context)
 
-        var username = db.selectUsername()
-        textview.setText(username)
+        val list:MutableList<Score> = db.getFirstScore()
+
+        firstScore.text = list.get(0).score.toString()
+        secondScore.text = list.get(1).score.toString()
+        thirdScore.text = list.get(2).score.toString()
+
+
+
+        //var username = db.selectUsername()
+       // textview.setText(username)
+
+        button.setOnClickListener({
+            val intent = Intent(this, GameActivity::class.java)
+            startActivity(intent)
+        })
 
     }
+
 }
