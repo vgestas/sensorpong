@@ -95,6 +95,20 @@
         app:layout_constraintTop_toBottomOf="@+id/textview" />
 
     <TextView
+        android:id="@+id/userNameScoreOne"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="24dp"
+        android:text="TextView"
+        app:layout_constraintEnd_toStartOf="@+id/firstScore"
+        app:layout_constraintStart_toEndOf="@+id/textView2"
+        app:layout_constraintTop_toBottomOf="@+id/textview" />
+
+    <TextView
         android:id="@+id/secondScore"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -107,6 +121,20 @@
         app:layout_constraintTop_toBottomOf="@+id/firstScore" />
 
     <TextView
+        android:id="@+id/userNameScoreTwo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="24dp"
+        android:text="TextView"
+        app:layout_constraintEnd_toStartOf="@+id/secondScore"
+        app:layout_constraintStart_toEndOf="@+id/textView4"
+        app:layout_constraintTop_toBottomOf="@+id/userNameScoreOne" />
+
+    <TextView
         android:id="@+id/thirdScore"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -117,5 +145,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView3"
         app:layout_constraintTop_toBottomOf="@+id/secondScore" />
+
+    <TextView
+        android:id="@+id/userNameScoreThree"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="24dp"
+        android:text="TextView"
+        app:layout_constraintEnd_toStartOf="@+id/thirdScore"
+        app:layout_constraintStart_toEndOf="@+id/textView3"
+        app:layout_constraintTop_toBottomOf="@+id/userNameScoreTwo" />
 
 </android.support.constraint.ConstraintLayout>

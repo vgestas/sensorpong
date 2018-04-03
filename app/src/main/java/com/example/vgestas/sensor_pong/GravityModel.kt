@@ -1,6 +1,6 @@
 package com.example.vgestas.sensor_pong
 
-class GravityModel(private var xGravityForce: Float = 0.0F, private var yGravityForce: Float = 0.0F, private var gravityForce: Float = 9.82F) {
+class GravityModel(private var xGravityForce: Float = 0.0F, private var yGravityForce: Float = 0.0F, private var gravityForce: Float = 11.00F) {
     var xAxisTranslation: Float = 0.0F
         get() {
             return xGravityForce / gravityForce

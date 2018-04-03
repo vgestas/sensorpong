@@ -8,11 +8,7 @@ import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import android.widget.EditText
 import android.widget.Toast
-import kotlinx.android.synthetic.main.activity_main.*
-import java.time.LocalDate
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
-import java.util.*
+import kotlinx.android.synthetic.main.activity_result.*
 
 class ResultActivity: AppCompatActivity()
 {
@@ -36,10 +32,14 @@ class ResultActivity: AppCompatActivity()
 
         val list:MutableList<Score> = db.getFirstScore()
 
-        firstScore.text = list.get(0).score.toString()
-        secondScore.text = list.get(1).score.toString()
-        thirdScore.text = list.get(2).score.toString()
+        firstScoreRanking.text = list.get(0).score.toString()
+        usernameFirst.text = list.get(0).username
+        secondScoreRanking.text = list.get(1).score.toString()
+        usernameSecond.text =list.get(1).username
+        thirdScoreRanking.text = list.get(2).score.toString()
+        usernameThird.text = list.get(2).username
 
+        scoreParty.text = score
 
     }
 
@@ -55,6 +55,7 @@ class ResultActivity: AppCompatActivity()
         customDialog.show()
         customDialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener({
             username = usernameEdit.text.toString()
+            usernameParty.text = username
             addUser(username)
             customDialog.dismiss()
         })

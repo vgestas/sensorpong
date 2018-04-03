@@ -8,18 +8,23 @@ import android.util.Log
 import kotlinx.android.synthetic.main.activity_game.*
 import android.media.MediaPlayer
 import android.os.CountDownTimer
-import android.widget.Toast
 import java.util.concurrent.TimeUnit
+import android.graphics.Point
+
 
 
 class GameActivity : AppCompatActivity() {
     private val viewModel: GravityViewModel by lazy {
-        //        ViewModelProvider.of(this, vmFactory(application)).create(GVM::class.java)
         GravityViewModel(application)
     }
 
 
     private lateinit var mp: MediaPlayer
+    private  var scoreCourant:Int = 0
+    private var toucheHaut:Boolean = false
+    private var toucheBas:Boolean = false
+    var width: Int = 0
+    var height: Int = 0
 
     var timer: CountDownTimer? = null
 
@@ -31,7 +36,15 @@ class GameActivity : AppCompatActivity() {
 
         BackgroundMusic()
 
-        score.setText("0")
+        scoreCourant = 0
+        score.text = scoreCourant.toString()
+
+        val display = windowManager.defaultDisplay
+        val size = Point()
+        display.getSize(size)
+        width = size.y
+        height = size.x
+
 
         startTimer()
 
@@ -47,10 +60,10 @@ class GameActivity : AppCompatActivity() {
 
     private fun startTimer()
     {
-        timer = object : CountDownTimer(15 * 1000, 1000)
+        timer = object : CountDownTimer(60 * 1000, 1000)
         {
             override fun onFinish(){
-                finishGame();
+                finishGame()
             }
 
             override fun onTick(millisUntilFinished: Long) {
@@ -84,12 +97,43 @@ class GameActivity : AppCompatActivity() {
     }
 
     private fun setTranslationX() {
-        rotationView.translationX = (mainContainer.width / 2 * viewModel.model.xAxisTranslation)
+        rotationView.translationX = (mainContainer.width / 2 * -viewModel.model.xAxisTranslation)
+        if(viewModel.model.xAxisTranslation <= -0.75)
+        {
+            scoreCourant --
+            score.text = scoreCourant.toString()
+        }
+        else if(viewModel.model.xAxisTranslation >= 0.75)
+        {
+            scoreCourant --
+            score.text = scoreCourant.toString()
+        }
     }
 
     private fun setTranslationY() {
-        rotationView.translationY = (mainContainer.height / 2 * -viewModel.model.yAxisTranslation)
+        rotationView.translationY = (mainContainer.height / 2 * viewModel.model.yAxisTranslation)
+        if(viewModel.model.yAxisTranslation >= 0.75 )
+        {
+            if(!toucheBas)
+            {
+                scoreCourant = scoreCourant + 100
+                score.text = scoreCourant.toString()
+                toucheBas = true
+                toucheHaut = false
+            }
 
+        }
+        else if(viewModel.model.yAxisTranslation <= -0.75)
+        {
+            if(!toucheHaut)
+            {
+                scoreCourant = scoreCourant + 100
+                score.text = scoreCourant.toString()
+                toucheHaut = true
+                toucheBas = false
+            }
+
+        }
     }
 
     private fun setTranslation() {

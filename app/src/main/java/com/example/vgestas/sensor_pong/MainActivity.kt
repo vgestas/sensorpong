@@ -20,6 +20,9 @@ class MainActivity : AppCompatActivity() {
         firstScore.text = list.get(0).score.toString()
         secondScore.text = list.get(1).score.toString()
         thirdScore.text = list.get(2).score.toString()
+        userNameScoreOne.text =list.get(0).username
+        userNameScoreTwo.text = list.get(1).username
+        userNameScoreThree.text = list.get(2).username
 
 
 
