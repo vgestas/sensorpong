@@ -24,7 +24,6 @@ class GameActivity : AppCompatActivity() {
 
 
     private lateinit var mp: MediaPlayer
-    private  var scoreCourant:Int = 0
     private var toucheHaut:Boolean = false
     private var toucheBas:Boolean = false
     var width: Int = 0
@@ -40,8 +39,7 @@ class GameActivity : AppCompatActivity() {
 
         BackgroundMusic()
 
-        scoreCourant = 0
-        score.text = scoreCourant.toString()
+        score.text = viewModelScore.model.score.toString()
 
         val display = windowManager.defaultDisplay
         val size = Point()
