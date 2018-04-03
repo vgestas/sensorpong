@@ -23,7 +23,9 @@ class Score
 
     }
 
-    constructor(){}
+    constructor(){
+        score = 0
+    }
 
     fun getScore(context: Context, username: String)
     {
@@ -46,6 +48,10 @@ class Score
     fun getFirstScore(context: Context)
     {
         var db = DataBaseHandler(context)
+    }
 
+    fun updateScore(valeur:Int)
+    {
+        score = score + valeur
     }
 }

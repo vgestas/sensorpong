@@ -18,6 +18,10 @@ class GameActivity : AppCompatActivity() {
         GravityViewModel(application)
     }
 
+    private val viewModelScore: ScoreViewModel by lazy{
+        ScoreViewModel(application)
+    }
+
 
     private lateinit var mp: MediaPlayer
     private  var scoreCourant:Int = 0
@@ -48,6 +52,13 @@ class GameActivity : AppCompatActivity() {
 
         startTimer()
 
+        viewModelScore.events.observe(this, Observer<ScoreEvent> {
+            event->
+            when(event){
+                is ScoreOk -> refreshScore()
+                is ScoreError -> showError("Score error !")
+            }
+        })
 
         viewModel.events.observe(this, Observer<GravityEvent?> {
             event ->
@@ -92,6 +103,11 @@ class GameActivity : AppCompatActivity() {
         setTranslation()
     }
 
+    private fun refreshScore()
+    {
+        score.text = viewModelScore.model.score.toString()
+    }
+
     private fun showError(message: String) {
         Log.d("Error", message)
     }
@@ -100,13 +116,11 @@ class GameActivity : AppCompatActivity() {
         rotationView.translationX = (mainContainer.width / 2 * -viewModel.model.xAxisTranslation)
         if(viewModel.model.xAxisTranslation <= -0.75)
         {
-            scoreCourant --
-            score.text = scoreCourant.toString()
+            viewModelScore.updateScore(-1)
         }
         else if(viewModel.model.xAxisTranslation >= 0.75)
         {
-            scoreCourant --
-            score.text = scoreCourant.toString()
+            viewModelScore.updateScore(-1)
         }
     }
 
@@ -116,8 +130,7 @@ class GameActivity : AppCompatActivity() {
         {
             if(!toucheBas)
             {
-                scoreCourant = scoreCourant + 100
-                score.text = scoreCourant.toString()
+                viewModelScore.updateScore(100)
                 toucheBas = true
                 toucheHaut = false
             }
@@ -127,8 +140,7 @@ class GameActivity : AppCompatActivity() {
         {
             if(!toucheHaut)
             {
-                scoreCourant = scoreCourant + 100
-                score.text = scoreCourant.toString()
+                viewModelScore.updateScore(100)
                 toucheHaut = true
                 toucheBas = false
             }
