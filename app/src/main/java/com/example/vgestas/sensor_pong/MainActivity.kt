@@ -6,9 +6,12 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.app.AlertDialog
 import android.widget.EditText
+import android.widget.ImageView
+import android.widget.TextView
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_result.*
 import kotlinx.android.synthetic.main.dialog_rules.*
+import org.w3c.dom.Text
 
 class MainActivity : AppCompatActivity() {
 
@@ -45,8 +48,57 @@ class MainActivity : AppCompatActivity() {
 
     private fun viewRules()
     {
+
+        var index:Int = 0
+        val listTitle: ArrayList<String> = arrayListOf()
+        listTitle.add(getString(R.string.presentation))
+        listTitle.add(getString(R.string.point_title))
+        listTitle.add(getString(R.string.more_information_title))
+        listTitle.add(getString(R.string.credit_title))
+
+        val listText: ArrayList<String> = arrayListOf()
+        listText.add(getString(R.string.presentation_text))
+        listText.add(getString(R.string.point_text))
+        listText.add(getString(R.string.more_information_text))
+        listText.add(getString(R.string.credit_text))
+
         val dialog = AlertDialog.Builder(this)
         val dialogView = layoutInflater.inflate(R.layout.dialog_rules, null)
+        val button_left = dialogView.findViewById<ImageView>(R.id.button_left)
+        val button_right = dialogView.findViewById<ImageView>(R.id.button_right)
+        val ruleTitle = dialogView.findViewById<TextView>(R.id.ruleTitle)
+        val ruleText = dialogView.findViewById<TextView>(R.id.ruleText)
+        button_left.setOnClickListener({
+            if(index == 0)
+            {
+                index = listTitle.size - 1
+
+            }
+            else
+            {
+                index --
+            }
+
+                ruleTitle.text = listTitle.get(index).toString()
+                ruleText.text = listText.get(index).toString()
+
+        })
+
+        button_right.setOnClickListener({
+                if(index == listTitle.size -1)
+                {
+                    index = 0
+                }
+                else
+                {
+                    index ++
+                }
+
+
+                ruleTitle.text = listTitle.get(index).toString()
+                ruleText.text = listText.get(index).toString()
+
+        })
         dialog.setView(dialogView)
         dialog.setCancelable(false)
         dialog.setPositiveButton("Ok", { dialogInterface: DialogInterface, i: Int -> })
