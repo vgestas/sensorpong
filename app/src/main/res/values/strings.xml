@@ -2,13 +2,6 @@
     <string name="app_name">sensor-pong</string>
     <string name="Ranking" >Classement</string>
 
-    <string name="Rules">
-    Le but du jeu est de faire passer la balle de haut en bas de l\'écran.
-    Plus vous faites d\'aller-retour plus vous marquerez des points.
-    Attention ! Si la balle touche les bords droit ou gauche de l\écran vous perdrez des points.
-    Bonne chance !
-    </string>
-
     <string name="presentation">Présentation</string>
     <string name="presentation_text">
         Sensor Pong est un jeu attractif et accessible à tous.
@@ -16,7 +9,18 @@
         Le but du jeu est de faire passer la balle de haut en bas de l\'écran sans toucher les bords droit et gauche.
     </string>
 
-    <string name="point">
-
+    <string name="point_title">Compte des points</string>
+    <string name="point_text">
+        Le système de point est très simple !!
+        Si vous touchez alternativement le haut et le bas de l\'écran vous gagnerez 100 points.
+        Cependant si vous touchez le bord gauche ou le bord droit vous perdrez 1 point.
     </string>
+
+    <string name="more_information_title">Plus d\'information</string>
+    <string name="more_information_text">
+        Pour débuter une partie cliquez sur le bouton Play.
+        A la fin d\'une partie, saisissez votre pseudo et consulter les trois premiers du classement.
+        Une fois votre partie terminée, il vous suffit
+    </string>
+
 </resources>
