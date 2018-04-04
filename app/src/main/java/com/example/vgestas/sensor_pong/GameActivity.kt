@@ -132,7 +132,6 @@ class GameActivity : AppCompatActivity() {
                 toucheBas = true
                 toucheHaut = false
             }
-
         }
         else if(viewModel.model.yAxisTranslation <= -0.75)
         {
@@ -142,7 +141,6 @@ class GameActivity : AppCompatActivity() {
                 toucheHaut = true
                 toucheBas = false
             }
-
         }
     }
 
