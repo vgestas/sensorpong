@@ -139,12 +139,18 @@ class DataBaseHandler (private val context: Context) : SQLiteOpenHelper(context,
 
             listScore.sortByDescending { it.score }
 
+
+
             var index = 0
-            while (index < 3)
-            {
-                listBestScore.add(listScore.get(index))
-                index ++
-            }
+            var max = 3
+            if(listScore.size < 3)
+                max = listScore.size
+
+
+
+            listBestScore = listScore.subList(0,max)
+
+
         }
 
         result.close()

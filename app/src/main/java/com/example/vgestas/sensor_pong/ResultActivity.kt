@@ -8,8 +8,12 @@ import android.os.Bundle
 import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_result.*
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+import java.util.*
 
 class ResultActivity: AppCompatActivity()
 {
@@ -23,7 +27,7 @@ class ResultActivity: AppCompatActivity()
         setContentView(R.layout.activity_result)
         score = intent.getStringExtra("scoreParty")
 
-        date = "14/12/2018"
+        date = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))
 
         openAlert()
 
@@ -33,14 +37,26 @@ class ResultActivity: AppCompatActivity()
 
         val list:MutableList<Score> = db.getFirstScore()
 
-        if(list.size != 0)
+        if(list.size > 0)
         {
             firstScoreRanking.text = list.get(0).score.toString()
             usernameFirst.text = list.get(0).username
-           /* secondScoreRanking.text = list.get(1).score.toString()
-            usernameSecond.text =list.get(1).username
-            thirdScoreRanking.text = list.get(2).score.toString()
-            usernameThird.text = list.get(2).username*/
+
+            try{
+                secondScoreRanking.text = list.get(1).score.toString()
+                usernameSecond.text =list.get(1).username
+            } catch(e:Exception) {
+                secondScoreRanking.visibility = TextView.INVISIBLE
+                usernameSecond.visibility = TextView.INVISIBLE
+            }
+
+            try {
+                thirdScoreRanking.text = list.get(2).score.toString()
+                usernameThird.text = list.get(2).username
+            } catch (e:Exception) {
+                thirdScoreRanking.visibility = TextView.INVISIBLE
+                usernameThird.visibility = TextView.INVISIBLE
+            }
         }
 
 

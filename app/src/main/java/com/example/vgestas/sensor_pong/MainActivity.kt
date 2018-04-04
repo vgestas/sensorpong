@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.app.AlertDialog
 import android.widget.EditText
+import android.widget.TextView
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_result.*
 import kotlinx.android.synthetic.main.dialog_rules.*
@@ -22,14 +23,26 @@ class MainActivity : AppCompatActivity() {
 
         val list:MutableList<Score> = db.getFirstScore()
 
-        if(list.size != 0)
+        if(list.size > 0)
         {
             firstScore.text = list.get(0).score.toString()
-          /*  secondScore.text = list.get(1).score.toString()
-            thirdScore.text = list.get(2).score.toString()*/
             userNameScoreOne.text =list.get(0).username
-            /*userNameScoreTwo.text = list.get(1).username
-            userNameScoreThree.text = list.get(2).username*/
+
+            try {
+                secondScore.text = list.get(1).score.toString()
+                userNameScoreTwo.text = list.get(1).username
+            } catch(e:Exception) {
+                secondScore.visibility = TextView.INVISIBLE
+                userNameScoreTwo.visibility = TextView.INVISIBLE
+            }
+
+            try {
+                thirdScore.text = list.get(2).score.toString()
+                userNameScoreThree.text = list.get(2).username
+            } catch(e:Exception) {
+                thirdScore.visibility = TextView.INVISIBLE
+                userNameScoreThree.visibility = TextView.INVISIBLE
+            }
         }
 
         button.setOnClickListener({
