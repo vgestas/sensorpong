@@ -69,7 +69,7 @@ class GameActivity : AppCompatActivity() {
 
     private fun startTimer()
     {
-        timer = object : CountDownTimer(60 * 1000, 1000)
+        timer = object : CountDownTimer(15 * 1000, 1000)
         {
             override fun onFinish(){
                 finishGame()
@@ -158,10 +158,14 @@ class GameActivity : AppCompatActivity() {
             putExtra("scoreParty", score.text.toString())
         }
         startActivity(intent)
+        finish()
     }
 
     override fun onBackPressed() {
         super.onBackPressed()
         mp.stop()
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
+        finish()
     }
 }

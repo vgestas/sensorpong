@@ -12,7 +12,7 @@
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_gravity="center"
-        android:background="@android:color/holo_blue_dark"
+        android:background="@drawable/ic_lens"
         tools:layout_editor_absoluteX="114dp"
         tools:layout_editor_absoluteY="187dp" />
 

@@ -1,4 +1,11 @@
 <resources>
     <string name="app_name">sensor-pong</string>
     <string name="Ranking" >Ranking</string>
+
+    <string name="Rules">
+    Le but du jeu est de faire passer la balle de haut en bas de l\'écran.
+    Plus vous faites d\'aller-retour plus vous marquerez des points.
+    Attention ! Si la balle touche les bords droit ou gauche de l\écran vous perdrez des points.
+    Bonne chance !
+    </string>
 </resources>

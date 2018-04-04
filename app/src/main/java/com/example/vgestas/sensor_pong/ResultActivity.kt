@@ -2,6 +2,7 @@ package com.example.vgestas.sensor_pong
 
 import android.annotation.TargetApi
 import android.content.DialogInterface
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.support.v7.app.AlertDialog
@@ -41,6 +42,18 @@ class ResultActivity: AppCompatActivity()
 
         scoreParty.text = score
 
+        home.setOnClickListener({
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+            finish()
+        })
+
+        replay.setOnClickListener({
+            val intent = Intent(this, GameActivity::class.java)
+            startActivity(intent)
+            finish()
+        })
+
     }
 
     private fun openAlert()
@@ -68,6 +81,12 @@ class ResultActivity: AppCompatActivity()
         db.insertData(score)
 
         Toast.makeText(this, "Insertion effectuée", Toast.LENGTH_LONG).show()
+    }
 
+    override fun onBackPressed() {
+        super.onBackPressed()
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
+        finish()
     }
 }
