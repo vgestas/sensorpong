@@ -4,31 +4,31 @@
 
     <string name="presentation">Présentation</string>
     <string name="presentation_text">
-        Sensor Pong est un jeu attractif et accessible à tous.
-        Les parties durent seulement 15 secondes.
+        Sensor Pong est un jeu attractif et accessible à tous. \n
+        Les parties durent seulement 15 secondes. \n
         Le but du jeu est de faire passer la balle de haut en bas de l\'écran sans toucher les bords droit et gauche.
     </string>
 
     <string name="point_title">Compte des points</string>
     <string name="point_text">
-        Le système de point est très simple !!
-        Si vous touchez alternativement le haut et le bas de l\'écran vous gagnerez 100 points.
+        Le système de point est très simple !!\n
+        Si vous touchez alternativement le haut et le bas de l\'écran vous gagnerez 100 points.\n
         Cependant si vous touchez le bord gauche ou le bord droit vous perdrez 1 point.
     </string>
 
     <string name="more_information_title">Plus d\'information</string>
     <string name="more_information_text">
-        Pour débuter une partie cliquez sur le bouton Play.
-        A la fin d\'une partie, saisissez votre pseudo et consulter les trois premiers du classement.
-        Une fois votre partie terminée, il vous suffit de cliquer sur le bouton \"Replay\" !
+        Pour débuter une partie cliquez sur le bouton Play.\n
+        A la fin d\'une partie, saisissez votre pseudo et consulter les trois premiers du classement.\n
+        Une fois votre partie terminée, il vous suffit de cliquer sur le bouton \"Replay\" !\n
     </string>
 
     <string name="credit_title">Crédit</string>
     <string name="credit_text">
-        La team Hibou est composé de :
-        Gestas Vincent
-        Grulois Clément
-        Lemarchand--Frémont Olivier
+        La team Hibou est composé de : \n
+        - Gestas Vincent \n
+        - Grulois Clément\n
+        - Lemarchand--Frémont Olivier\n
 
         Et vous souhaite une bonne partie de Sensor Pong !
     </string>
