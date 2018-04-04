@@ -11,6 +11,7 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_result.*
+import java.text.SimpleDateFormat
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
@@ -27,8 +28,8 @@ class ResultActivity: AppCompatActivity()
         setContentView(R.layout.activity_result)
         score = intent.getStringExtra("scoreParty")
 
-        date = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))
-
+        //date = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))
+        date = SimpleDateFormat("dd/MM/yyyy").format(Date())
         openAlert()
 
         val context = this
