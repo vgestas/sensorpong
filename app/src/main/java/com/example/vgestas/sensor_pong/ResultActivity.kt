@@ -37,10 +37,10 @@ class ResultActivity: AppCompatActivity()
         {
             firstScoreRanking.text = list.get(0).score.toString()
             usernameFirst.text = list.get(0).username
-            secondScoreRanking.text = list.get(1).score.toString()
+           /* secondScoreRanking.text = list.get(1).score.toString()
             usernameSecond.text =list.get(1).username
             thirdScoreRanking.text = list.get(2).score.toString()
-            usernameThird.text = list.get(2).username
+            usernameThird.text = list.get(2).username*/
         }
 
 
