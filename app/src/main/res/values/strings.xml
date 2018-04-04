@@ -20,7 +20,17 @@
     <string name="more_information_text">
         Pour débuter une partie cliquez sur le bouton Play.
         A la fin d\'une partie, saisissez votre pseudo et consulter les trois premiers du classement.
-        Une fois votre partie terminée, il vous suffit
+        Une fois votre partie terminée, il vous suffit de cliquer sur le bouton \"Replay\" !
+    </string>
+
+    <string name="credit_title">Crédit</string>
+    <string name="credit_text">
+        La team Hibou est composé de :
+        Gestas Vincent
+        Grulois Clément
+        Lemarchand--Frémont Olivier
+
+        Et vous souhaite une bonne partie de Sensor Pong !
     </string>
 
 </resources>
