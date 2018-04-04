@@ -22,12 +22,15 @@ class MainActivity : AppCompatActivity() {
 
         val list:MutableList<Score> = db.getFirstScore()
 
-        firstScore.text = list.get(0).score.toString()
-        secondScore.text = list.get(1).score.toString()
-        thirdScore.text = list.get(2).score.toString()
-        userNameScoreOne.text =list.get(0).username
-        userNameScoreTwo.text = list.get(1).username
-        userNameScoreThree.text = list.get(2).username
+        if(list.size != 0)
+        {
+            firstScore.text = list.get(0).score.toString()
+            secondScore.text = list.get(1).score.toString()
+            thirdScore.text = list.get(2).score.toString()
+            userNameScoreOne.text =list.get(0).username
+            userNameScoreTwo.text = list.get(1).username
+            userNameScoreThree.text = list.get(2).username
+        }
 
         button.setOnClickListener({
             val intent = Intent(this, GameActivity::class.java)

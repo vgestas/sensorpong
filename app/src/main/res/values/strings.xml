@@ -1,11 +1,22 @@
 <resources>
     <string name="app_name">sensor-pong</string>
-    <string name="Ranking" >Ranking</string>
+    <string name="Ranking" >Classement</string>
 
     <string name="Rules">
     Le but du jeu est de faire passer la balle de haut en bas de l\'écran.
     Plus vous faites d\'aller-retour plus vous marquerez des points.
     Attention ! Si la balle touche les bords droit ou gauche de l\écran vous perdrez des points.
     Bonne chance !
+    </string>
+
+    <string name="presentation">Présentation</string>
+    <string name="presentation_text">
+        Sensor Pong est un jeu attractif et accessible à tous.
+        Les parties durent seulement 15 secondes.
+        Le but du jeu est de faire passer la balle de haut en bas de l\'écran sans toucher les bords droit et gauche.
+    </string>
+
+    <string name="point">
+
     </string>
 </resources>
