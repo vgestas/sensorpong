@@ -35,7 +35,7 @@ class GameActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game)
-        mp = MediaPlayer.create(this, R.raw.musique)
+        mp = MediaPlayer.create(this, R.raw.audio)
 
         BackgroundMusic()
 
