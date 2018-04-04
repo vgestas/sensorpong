@@ -2,6 +2,7 @@ package com.example.vgestas.sensor_pong
 
 import android.content.Context
 import java.security.AccessControlContext
+import java.text.SimpleDateFormat
 import java.util.*
 
 class Score
@@ -24,34 +25,30 @@ class Score
     }
 
     constructor(){
-        score = 0
     }
 
-    fun getScore(context: Context, username: String)
+    fun insertUser(context:Context, score:Int)
     {
         var db = DataBaseHandler(context)
-        var listScore : MutableList<Score> = ArrayList()
-        listScore = db.selectScoreListByUsername(username)
-        db.close()
-    }
-
-    fun insertUsername(context:Context, username: String, score: Int)
-    {
-        var db = DataBaseHandler(context)
-        val calendar = Calendar.getInstance() as Calendar
-        var date = calendar.time as Date
-        var score = Score(score, username, date.toString())
+        date = SimpleDateFormat("dd/MM/yyyy").format(Date())
+        var score = Score(score, username, date)
         db.insertData(score)
         db.close()
     }
 
-    fun getFirstScore(context: Context)
-    {
-        var db = DataBaseHandler(context)
-    }
 
     fun updateScore(valeur:Int)
     {
         score = score + valeur
+    }
+
+    fun updateUsername(username:String)
+    {
+        this.username = username
+    }
+
+    fun setScoreParty(score:Int)
+    {
+        this.score = score
     }
 }

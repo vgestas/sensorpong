@@ -16,9 +16,23 @@ class ScoreViewModel(application: Application, val model: Score = Score()) : And
     {
         model.updateScore(valeur)
         events.value = ScoreOk(model)
-
     }
 
+    fun updateUsername(username:String)
+    {
+        model.updateUsername(username)
+        events.value = ScoreOk(model)
+    }
+
+    fun insertUser(context: Context, score:Int)
+    {
+        model.insertUser(context, score)
+    }
+
+    fun setScoreParty(score:Int)
+    {
+        model.setScoreParty(score)
+    }
 }
 
 

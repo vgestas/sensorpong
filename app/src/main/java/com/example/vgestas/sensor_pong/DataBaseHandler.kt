@@ -47,7 +47,9 @@ class DataBaseHandler (private val context: Context) : SQLiteOpenHelper(context,
         }
     }
 
-    fun selectScoreList(): MutableList<Score> {
+
+
+    fun getAllScore(): MutableList<Score> {
         var listScore: MutableList<Score> = ArrayList()
         val db = this.readableDatabase
         val query = "Select * from " + TABLE_NAME
@@ -63,6 +65,8 @@ class DataBaseHandler (private val context: Context) : SQLiteOpenHelper(context,
                 listScore.add(score)
             } while (result.moveToNext())
         }
+
+        listScore.sortByDescending { it.score }
 
         result.close()
         db.close()
@@ -141,7 +145,6 @@ class DataBaseHandler (private val context: Context) : SQLiteOpenHelper(context,
 
 
 
-            var index = 0
             var max = 3
             if(listScore.size < 3)
                 max = listScore.size

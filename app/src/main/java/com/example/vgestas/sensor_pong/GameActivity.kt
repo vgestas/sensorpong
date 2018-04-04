@@ -10,7 +10,7 @@ import android.media.MediaPlayer
 import android.os.CountDownTimer
 import java.util.concurrent.TimeUnit
 import android.graphics.Point
-
+import kotlinx.android.synthetic.main.activity_result.*
 
 
 class GameActivity : AppCompatActivity() {
@@ -129,6 +129,7 @@ class GameActivity : AppCompatActivity() {
             if(!toucheBas)
             {
                 viewModelScore.updateScore(100)
+                rotationView.setBackgroundResource(R.drawable.ballsp_min)
                 toucheBas = true
                 toucheHaut = false
             }
@@ -138,6 +139,7 @@ class GameActivity : AppCompatActivity() {
             if(!toucheHaut)
             {
                 viewModelScore.updateScore(100)
+                rotationView.setBackgroundResource(R.drawable.ballsp_inv_min)
                 toucheHaut = true
                 toucheBas = false
             }

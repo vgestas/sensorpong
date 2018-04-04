@@ -7,29 +7,31 @@ import android.os.Build
 import android.os.Bundle
 import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import android.widget.EditText
 import android.widget.TextView
-import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_result.*
-import java.text.SimpleDateFormat
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
-import java.util.*
+import android.arch.lifecycle.Observer
+import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 
 class ResultActivity: AppCompatActivity()
 {
-    private lateinit var username: String
-    private lateinit var date:String
-    private lateinit var score:String
+    private val viewModelScore: ScoreViewModel by lazy{
+        ScoreViewModel(application)
+    }
+
+    val viewAdapter: RankingAdapter by lazy {
+        RankingAdapter()
+    }
 
     @TargetApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_result)
-        score = intent.getStringExtra("scoreParty")
+        viewModelScore.setScoreParty(intent.getStringExtra("scoreParty").toInt())
 
-        //date = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))
-        date = SimpleDateFormat("dd/MM/yyyy").format(Date())
+
         openAlert()
 
         val context = this
@@ -61,7 +63,7 @@ class ResultActivity: AppCompatActivity()
         }
 
 
-        scoreParty.text = score
+        scoreParty.text = viewModelScore.model.score.toString()
 
         home.setOnClickListener({
             val intent = Intent(this, MainActivity::class.java)
@@ -73,6 +75,41 @@ class ResultActivity: AppCompatActivity()
             val intent = Intent(this, GameActivity::class.java)
             startActivity(intent)
             finish()
+        })
+
+        viewModelScore.events.observe(this, Observer<ScoreEvent> {
+            event->
+            when(event){
+                is ScoreOk -> refreshUsername()
+                is ScoreError -> showError("Score error !")
+            }
+        })
+
+        layoutClassemnt.setOnClickListener({
+
+            val dialog = AlertDialog.Builder(this)
+            val dialogView = layoutInflater.inflate(R.layout.dialog_ranking, null)
+            val recycler = dialogView.findViewById<RecyclerView>(R.id.recycler)
+
+            recycler.apply {
+                layoutManager = LinearLayoutManager(dialog.context)
+                recycler.adapter = viewAdapter
+            }
+
+            val listScore:MutableList<Score> = db.getAllScore()
+            viewAdapter.setScore(listScore.toMutableList())
+
+            dialog.setView(dialogView)
+            dialog.setCancelable(false)
+            dialog.setTitle("CLASSEMENT")
+            dialog.setPositiveButton("Ok", { dialogInterface: DialogInterface, i: Int -> })
+            val customDialog = dialog.create()
+            customDialog.show()
+            customDialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener({
+                customDialog.dismiss()
+            })
+
+
         })
 
     }
@@ -88,21 +125,21 @@ class ResultActivity: AppCompatActivity()
         val customDialog = dialog.create()
         customDialog.show()
         customDialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener({
-            username = usernameEdit.text.toString()
-            usernameParty.text = username
-            addUser(username)
+            viewModelScore.updateUsername(usernameEdit.text.toString())
+            viewModelScore.insertUser(this, scoreParty.text.toString().toInt())
             customDialog.dismiss()
         })
     }
 
-    private fun addUser(username:String)
-    {
-        val db = DataBaseHandler(this)
-        val score = Score(score.toInt(), username, date)
-        db.insertData(score)
-
-        Toast.makeText(this, "Insertion effectuée", Toast.LENGTH_LONG).show()
+    private fun showError(message: String) {
+        Log.d("Error", message)
     }
+
+    private fun refreshUsername()
+    {
+        usernameParty.text = viewModelScore.model.username
+    }
+
 
     override fun onBackPressed() {
         super.onBackPressed()

@@ -41,6 +41,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
+    <ScrollView
+        android:id="@+id/scroll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/ruleTitle">
+
     <TextView
         android:id="@+id/ruleText"
         android:layout_width="match_parent"
@@ -56,7 +62,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ruleTitle" />
+         />
+
+    </ScrollView>
 
     <ImageView
         android:id="@+id/button_left"
@@ -70,7 +78,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.25"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ruleText"
+        app:layout_constraintTop_toBottomOf="@+id/scroll"
         app:srcCompat="@drawable/ic_arrow_left" />
 
     <ImageView
@@ -85,6 +93,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.75"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ruleText"
+        app:layout_constraintTop_toBottomOf="@+id/scroll"
         app:srcCompat="@drawable/ic_arrow_right" />
 </android.support.constraint.ConstraintLayout>

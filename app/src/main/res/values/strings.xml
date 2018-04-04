@@ -16,11 +16,12 @@
         Cependant si vous touchez le bord gauche ou le bord droit vous perdrez 1 point.
     </string>
 
-    <string name="more_information_title">Plus d\'information</string>
+    <string name="more_information_title">Résultat</string>
     <string name="more_information_text">
-        Pour débuter une partie cliquez sur le bouton Play.\n
-        A la fin d\'une partie, saisissez votre pseudo et consulter les trois premiers du classement.\n
-        Une fois votre partie terminée, il vous suffit de cliquer sur le bouton \"Replay\" !\n
+        A la fin d\'une partie, saisissez votre pseudo et consulter les trois premiers du classement (avant votre partie).\n
+        Pour accéder au classement complet, il vous suffit d\'appuyer sur le \'i\' d\'information. \n
+        Pour rejouer il vous suffit de cliquer sur le bouton \"Replay\".\n
+        En cliquant sur le bouton \"Home\" vous retournerez à la page d\'accueil avec le classement actualisé.
     </string>
 
     <string name="credit_title">Crédit</string>
