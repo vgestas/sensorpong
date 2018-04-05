@@ -13,8 +13,7 @@ val COL_SCORE = "Score"
 val COL_USERNAME = "Username"
 val COL_DATE = "Date"
 
-class DataBaseHandler (private val context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null, 1)
-{
+class DataBaseHandler(private val context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null, 1) {
     override fun onCreate(db: SQLiteDatabase?) {
         val createTable = "CREATE TABLE " + TABLE_NAME + " (" +
                 COL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
@@ -28,20 +27,16 @@ class DataBaseHandler (private val context: Context) : SQLiteOpenHelper(context,
     override fun onUpgrade(p0: SQLiteDatabase?, p1: Int, p2: Int) {
     }
 
-    fun insertData(score: Score)
-    {
+    fun insertData(score: Score) {
         val db = this.writableDatabase
         var contentValues = ContentValues()
         contentValues.put(COL_SCORE, score.score)
         contentValues.put(COL_USERNAME, score.username)
         contentValues.put(COL_DATE, score.date)
-        var result  = db.insert(TABLE_NAME, null ,contentValues)
-        if(result == -1.toLong())
-        {
+        var result = db.insert(TABLE_NAME, null, contentValues)
+        if (result == -1.toLong()) {
             Toast.makeText(context, "Failed", Toast.LENGTH_LONG).show()
-        }
-        else
-        {
+        } else {
             Toast.makeText(context, "Success", Toast.LENGTH_LONG).show()
         }
 
@@ -75,18 +70,15 @@ class DataBaseHandler (private val context: Context) : SQLiteOpenHelper(context,
     }
 
 
-    fun getFirstScore() : MutableList<Score>
-    {
-        var listBestScore:MutableList<Score> = ArrayList()
-        var listScore:MutableList<Score> = ArrayList()
+    fun getFirstScore(): MutableList<Score> {
+        var listBestScore: MutableList<Score> = ArrayList()
+        var listScore: MutableList<Score> = ArrayList()
         val db = this.readableDatabase
         val query = "Select " + COL_USERNAME + ", " + COL_SCORE + " From " + TABLE_NAME
         val result = db.rawQuery(query, null)
 
-        if(result.moveToFirst())
-        {
-            do
-            {
+        if (result.moveToFirst()) {
+            do {
                 var score = Score()
                 score.username = result.getString(result.getColumnIndex(COL_USERNAME))
                 score.score = result.getString(result.getColumnIndex(COL_SCORE)).toInt()
@@ -96,10 +88,10 @@ class DataBaseHandler (private val context: Context) : SQLiteOpenHelper(context,
             listScore.sortByDescending { it.score }
 
             var max = 3
-            if(listScore.size < 3)
+            if (listScore.size < 3)
                 max = listScore.size
 
-            listBestScore = listScore.subList(0,max)
+            listBestScore = listScore.subList(0, max)
         }
 
         result.close()
@@ -107,27 +99,23 @@ class DataBaseHandler (private val context: Context) : SQLiteOpenHelper(context,
         return listBestScore
     }
 
-    fun getRankingParty(): Int
-    {
+    fun getRankingParty(): Int {
         val listScore: MutableList<Score> = this.getAllScore()
         val db = this.readableDatabase
         val query = "Select Max($COL_ID) from $TABLE_NAME"
         val result = db.rawQuery(query, null)
-        var idParty : Int = 0
-        if(result.moveToFirst())
-        {
+        var idParty: Int = 0
+        if (result.moveToFirst()) {
             idParty = result.getString(result.getColumnIndex("Max(ID)")).toInt()
         }
 
-        var rankingParty:Int = 0
+        var rankingParty: Int = 0
 
 
         listScore.sortByDescending { it.score }
 
-        for(scoreCourant:Score in listScore)
-        {
-            if(scoreCourant.id == idParty)
-            {
+        for (scoreCourant: Score in listScore) {
+            if (scoreCourant.id == idParty) {
                 rankingParty = listScore.indexOf(scoreCourant) + 1
                 break
             }

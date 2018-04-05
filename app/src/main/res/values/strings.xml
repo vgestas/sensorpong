@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">sensor-pong</string>
-    <string name="Ranking" >Classement</string>
+    <string name="Ranking">Classement</string>
 
     <string name="presentation">Présentation</string>
     <string name="presentation_text">

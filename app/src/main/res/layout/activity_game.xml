@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainContainer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".GameActivity"
-    android:id="@+id/mainContainer">
+    tools:context=".GameActivity">
 
     <View
         android:id="@+id/rotationView"
@@ -20,7 +20,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="18dp"
-        android:textStyle="bold"/>
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/timerScreen"
@@ -28,7 +28,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="right"
         android:textSize="18dp"
-        android:textStyle="bold"/>
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/timerStartParty"
@@ -36,8 +36,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="15dp"
+        android:textColor="#f39500"
         android:textSize="24dp"
-        android:textStyle="bold"
-        android:textColor="#f39500"/>
+        android:textStyle="bold" />
 
 </FrameLayout>

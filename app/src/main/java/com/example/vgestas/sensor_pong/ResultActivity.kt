@@ -1,24 +1,23 @@
 package com.example.vgestas.sensor_pong
 
 import android.annotation.TargetApi
+import android.arch.lifecycle.Observer
 import android.content.DialogInterface
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.widget.EditText
 import android.widget.TextView
-import kotlinx.android.synthetic.main.activity_result.*
-import android.arch.lifecycle.Observer
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.widget.Toast
+import kotlinx.android.synthetic.main.activity_result.*
 
-class ResultActivity: AppCompatActivity()
-{
-    private val viewModelScore: ScoreViewModel by lazy{
+class ResultActivity : AppCompatActivity() {
+    private val viewModelScore: ScoreViewModel by lazy {
         ScoreViewModel(application)
     }
 
@@ -26,7 +25,7 @@ class ResultActivity: AppCompatActivity()
         RankingAdapter()
     }
 
-    var rankingUser:Int = 0
+    var rankingUser: Int = 0
 
     @TargetApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,17 +40,16 @@ class ResultActivity: AppCompatActivity()
 
         val db = DataBaseHandler(context)
 
-        val list:MutableList<Score> = db.getFirstScore()
+        val list: MutableList<Score> = db.getFirstScore()
 
-        if(list.size > 0)
-        {
+        if (list.size > 0) {
             firstScoreRanking.text = list.get(0).score.toString()
             usernameFirst.text = list.get(0).username
 
-            try{
+            try {
                 secondScoreRanking.text = list.get(1).score.toString()
-                usernameSecond.text =list.get(1).username
-            } catch(e:Exception) {
+                usernameSecond.text = list.get(1).username
+            } catch (e: Exception) {
                 secondScoreRanking.visibility = TextView.INVISIBLE
                 usernameSecond.visibility = TextView.INVISIBLE
             }
@@ -59,7 +57,7 @@ class ResultActivity: AppCompatActivity()
             try {
                 thirdScoreRanking.text = list.get(2).score.toString()
                 usernameThird.text = list.get(2).username
-            } catch (e:Exception) {
+            } catch (e: Exception) {
                 thirdScoreRanking.visibility = TextView.INVISIBLE
                 usernameThird.visibility = TextView.INVISIBLE
             }
@@ -80,9 +78,8 @@ class ResultActivity: AppCompatActivity()
             finish()
         })
 
-        viewModelScore.events.observe(this, Observer<ScoreEvent> {
-            event->
-            when(event){
+        viewModelScore.events.observe(this, Observer<ScoreEvent> { event ->
+            when (event) {
                 is ScoreOk -> refreshUsername()
                 is ScoreError -> showError("Score error !")
             }
@@ -99,7 +96,7 @@ class ResultActivity: AppCompatActivity()
                 recycler.adapter = viewAdapter
             }
 
-            val listScore:MutableList<Score> = db.getAllScore()
+            val listScore: MutableList<Score> = db.getAllScore()
             viewAdapter.setScore(listScore.toMutableList())
             viewAdapter.setRanking(rankingUser)
 
@@ -115,8 +112,7 @@ class ResultActivity: AppCompatActivity()
         })
     }
 
-    private fun openAlert()
-    {
+    private fun openAlert() {
         val dialog = AlertDialog.Builder(this)
         val dialogView = layoutInflater.inflate(R.layout.custom_dialog, null)
         val usernameEdit = dialogView.findViewById<EditText>(R.id.usernameEdit)
@@ -128,29 +124,25 @@ class ResultActivity: AppCompatActivity()
         customDialog.show()
         customDialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener({
 
-        val msg = usernameEdit.text.trim().toString()
-        if(msg.isEmpty())
-        {
-            Toast.makeText(this, "Saisir un pseudo svp", Toast.LENGTH_LONG).show()
-        }
-        else
-        {
-            viewModelScore.updateUsername(usernameEdit.text.toString())
-            viewModelScore.insertUser(this, scoreParty.text.toString().toInt())
-            val db = DataBaseHandler(this)
-            rankingUser = db.getRankingParty()
-            rankingParty.text = rankingUser.toString()
-            customDialog.dismiss()
-        }
-    })
+            val msg = usernameEdit.text.trim().toString()
+            if (msg.isEmpty()) {
+                Toast.makeText(this, "Saisir un pseudo svp", Toast.LENGTH_LONG).show()
+            } else {
+                viewModelScore.updateUsername(usernameEdit.text.toString())
+                viewModelScore.insertUser(this, scoreParty.text.toString().toInt())
+                val db = DataBaseHandler(this)
+                rankingUser = db.getRankingParty()
+                rankingParty.text = rankingUser.toString()
+                customDialog.dismiss()
+            }
+        })
     }
 
     private fun showError(message: String) {
         Log.d("Error", message)
     }
 
-    private fun refreshUsername()
-    {
+    private fun refreshUsername() {
         usernameParty.text = viewModelScore.model.username
     }
 

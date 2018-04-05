@@ -8,7 +8,6 @@ import android.hardware.Sensor
 import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
 import android.hardware.SensorManager
-import com.example.vgestas.sensor_pong.GravityModel
 
 class GravityViewModel(application: Application, val model: GravityModel = GravityModel()) : AndroidViewModel(application), SensorEventListener {
     private val sensorManager: SensorManager by lazy {

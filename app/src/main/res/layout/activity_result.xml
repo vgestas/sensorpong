@@ -10,31 +10,30 @@
         android:id="@+id/layoutClassemnt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center"
         android:layout_marginTop="32dp"
-        android:background="#f39500">
+        android:background="#f39500"
+        android:gravity="center"
+        android:orientation="horizontal">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:fontFamily="@font/sonsie_one"
             android:text="@string/Ranking"
-            android:textSize="24sp"
-            android:layout_gravity="center"
             android:textColor="@android:color/white"
-            app:layout_constraintHorizontal_bias="0.502"/>
+            android:textSize="24sp"
+            app:layout_constraintHorizontal_bias="0.502" />
 
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:srcCompat="@drawable/ic_info"
-            android:layout_marginLeft="5dp"/>
+            app:srcCompat="@drawable/ic_info" />
 
     </LinearLayout>
-
 
 
     <TextView
@@ -156,16 +155,16 @@
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="@+id/layoutClassemnt"
-        tools:layout_editor_absoluteX="0dp"
-        tools:ignore="MissingConstraints">
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="0dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/sonsie_one"
             android:text="Votre partie"
-            android:textSize="24sp"
             android:textColor="@android:color/white"
+            android:textSize="24sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.502"
@@ -175,7 +174,6 @@
             app:layout_constraintTop_toTopOf="parent" />
 
     </LinearLayout>
-
 
 
     <TextView
@@ -278,7 +276,6 @@
         android:text="Replay"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
-
 
 
 </android.support.constraint.ConstraintLayout>

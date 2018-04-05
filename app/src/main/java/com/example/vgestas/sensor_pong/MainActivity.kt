@@ -2,16 +2,12 @@ package com.example.vgestas.sensor_pong
 
 import android.content.DialogInterface
 import android.content.Intent
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.app.AlertDialog
-import android.widget.EditText
-import android.widget.TextView
+import android.support.v7.app.AppCompatActivity
 import android.widget.ImageView
+import android.widget.TextView
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.activity_result.*
-import kotlinx.android.synthetic.main.dialog_rules.*
-import org.w3c.dom.Text
 
 class MainActivity : AppCompatActivity() {
 
@@ -23,17 +19,16 @@ class MainActivity : AppCompatActivity() {
 
         val db = DataBaseHandler(context)
 
-        val list:MutableList<Score> = db.getFirstScore()
+        val list: MutableList<Score> = db.getFirstScore()
 
-        if(list.size > 0)
-        {
+        if (list.size > 0) {
             firstScore.text = list.get(0).score.toString()
-            userNameScoreOne.text =list.get(0).username
+            userNameScoreOne.text = list.get(0).username
 
             try {
                 secondScore.text = list.get(1).score.toString()
                 userNameScoreTwo.text = list.get(1).username
-            } catch(e:Exception) {
+            } catch (e: Exception) {
                 secondScore.visibility = TextView.INVISIBLE
                 userNameScoreTwo.visibility = TextView.INVISIBLE
             }
@@ -41,7 +36,7 @@ class MainActivity : AppCompatActivity() {
             try {
                 thirdScore.text = list.get(2).score.toString()
                 userNameScoreThree.text = list.get(2).username
-            } catch(e:Exception) {
+            } catch (e: Exception) {
                 thirdScore.visibility = TextView.INVISIBLE
                 userNameScoreThree.visibility = TextView.INVISIBLE
             }
@@ -58,10 +53,9 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
-    private fun viewRules()
-    {
+    private fun viewRules() {
 
-        var index:Int = 0
+        var index: Int = 0
         val listTitle: ArrayList<String> = arrayListOf()
         listTitle.add(getString(R.string.presentation))
         listTitle.add(getString(R.string.point_title))
@@ -81,33 +75,27 @@ class MainActivity : AppCompatActivity() {
         val ruleTitle = dialogView.findViewById<TextView>(R.id.ruleTitle)
         val ruleText = dialogView.findViewById<TextView>(R.id.ruleText)
         button_left.setOnClickListener({
-            if(index == 0)
-            {
+            if (index == 0) {
                 index = listTitle.size - 1
 
-            }
-            else
-            {
-                index --
+            } else {
+                index--
             }
 
-                ruleTitle.text = listTitle.get(index).toString()
-                ruleText.text = listText.get(index).toString()
+            ruleTitle.text = listTitle.get(index).toString()
+            ruleText.text = listText.get(index).toString()
 
         })
 
         button_right.setOnClickListener({
-                if(index == listTitle.size -1)
-                {
-                    index = 0
-                }
-                else
-                {
-                    index ++
-                }
+            if (index == listTitle.size - 1) {
+                index = 0
+            } else {
+                index++
+            }
 
-                ruleTitle.text = listTitle.get(index).toString()
-                ruleText.text = listText.get(index).toString()
+            ruleTitle.text = listTitle.get(index).toString()
+            ruleText.text = listText.get(index).toString()
         })
         dialog.setView(dialogView)
         dialog.setCancelable(false)
