@@ -10,6 +10,7 @@ import android.media.MediaPlayer
 import android.os.CountDownTimer
 import java.util.concurrent.TimeUnit
 import android.graphics.Point
+import android.view.View.GONE
 import kotlinx.android.synthetic.main.activity_result.*
 
 
@@ -31,6 +32,8 @@ class GameActivity : AppCompatActivity() {
 
     var timer: CountDownTimer? = null
 
+    var timerBeforeParty: CountDownTimer? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,7 +51,7 @@ class GameActivity : AppCompatActivity() {
         height = size.x
 
 
-        startTimer()
+        startTimerBeforeParty()
 
         viewModelScore.events.observe(this, Observer<ScoreEvent> {
             event->
@@ -67,8 +70,10 @@ class GameActivity : AppCompatActivity() {
         })
     }
 
-    private fun startTimer()
+    private fun startTimerParty()
     {
+        viewModel.startRegisterListener()
+
         timer = object : CountDownTimer(15 * 1000, 1000)
         {
             override fun onFinish(){
@@ -82,14 +87,25 @@ class GameActivity : AppCompatActivity() {
         }.start()
     }
 
+    private fun startTimerBeforeParty()
+    {
+        timerBeforeParty = object : CountDownTimer(3 * 1000, 1000)
+        {
+            override fun onFinish(){
+                startTimerParty()
+                timerStartParty.visibility = GONE
+            }
+
+            override fun onTick(millisUntilFinished: Long) {
+
+                timerStartParty.text = (TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished)).toString()
+            }
+        }.start()
+    }
+
     fun BackgroundMusic()
     {
         mp.start()
-    }
-
-    override fun onResume() {
-        super.onResume()
-        viewModel.startRegisterListener()
     }
 
     override fun onPause() {
@@ -162,6 +178,5 @@ class GameActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        //super.onBackPressed()
     }
 }

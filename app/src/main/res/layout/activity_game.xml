@@ -27,4 +27,14 @@
         android:layout_height="wrap_content"
         android:layout_gravity="right"/>
 
+    <TextView
+        android:id="@+id/timerStartParty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="15dp"
+        android:textSize="24dp"
+        android:textStyle="bold"
+        android:textColor="#f39500"/>
+
 </FrameLayout>
