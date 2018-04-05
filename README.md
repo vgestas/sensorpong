@@ -7,8 +7,8 @@ Le but du jeu est de faire passer la balle de haut en bas de l\'écran et invers
 
 ### Compte des points
 Le système de point est très simple :
-	- Vous marquez **100 points** en touchant alternativement le bord haut et bas de l'écran
-	- Vous perdez **1 points** à chaque fois que vous touchez les bords droit et gauche de l'écran. Votre score décroit tant que vous restez contre un de ces bords
+- Vous marquez **100 points** en touchant alternativement le bord haut et bas de l'écran
+- Vous perdez **1 points** à chaque fois que vous touchez les bords droit et gauche de l'écran. Votre score décroit tant que vous restez contre un de ces bords
 
 
 ### Résultat
