@@ -38,11 +38,7 @@ class DataBaseHandler(private val context: Context) : SQLiteOpenHelper(context, 
         contentValues.put(COL_USERNAME, score.username)
         contentValues.put(COL_DATE, score.date)
         var result = db.insert(TABLE_NAME, null, contentValues)
-        if (result == -1.toLong()) {
-            Toast.makeText(context, "Failed", Toast.LENGTH_LONG).show()
-        } else {
-            Toast.makeText(context, "Success", Toast.LENGTH_LONG).show()
-        }
+
         db.close()
     }
 

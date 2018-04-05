@@ -1,13 +1,12 @@
 package com.example.vgestas.sensor_pong.Activity
 
+import android.annotation.TargetApi
 import android.arch.lifecycle.Observer
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.media.MediaPlayer
-import android.os.Bundle
-import android.os.CountDownTimer
-import android.os.Vibrator
+import android.os.*
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.View.GONE
@@ -21,12 +20,12 @@ class GameActivity : AppCompatActivity() {
 
     private lateinit var mpBackground: MediaPlayer
     private lateinit var mpDecompte : MediaPlayer
+    private var backgroundIsPause:Boolean = false
+    var timer: CountDownTimer? = null
+    var timerBeforeParty: CountDownTimer? = null
 
     // save if the player must touch the top or the bottom of  the screen
     private var touch_up: Boolean = false
-
-    var timer: CountDownTimer? = null
-    var timerBeforeParty: CountDownTimer? = null
 
     private val viewModel: GravityViewModel by lazy {
         GravityViewModel(application)
@@ -39,7 +38,6 @@ class GameActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game)
-
 
         score.text = viewModelScore.model.score.toString()
 
@@ -62,7 +60,7 @@ class GameActivity : AppCompatActivity() {
 
     private fun startTimerParty() {
         viewModel.startRegisterListener()
-        BackgroundMusic()
+        backgroundMusic()
 
         timer = object : CountDownTimer(15 * 1000, 1000) {
             override fun onFinish() {
@@ -73,7 +71,6 @@ class GameActivity : AppCompatActivity() {
 
                 timerScreen.text = (TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished)).toString()
                 if (TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) <= 5) {
-                    DecompteMusic()
                     timerScreen.setTextColor(Color.parseColor("#F70101"))
                     val vibratorService = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
                     vibratorService.vibrate(500)
@@ -83,8 +80,7 @@ class GameActivity : AppCompatActivity() {
     }
 
     private fun startTimerBeforeParty() {
-
-        DecompteMusic()
+        decompteMusic()
         timerBeforeParty = object : CountDownTimer(3 * 1000, 1000) {
             override fun onFinish() {
                 mpDecompte.stop()
@@ -98,14 +94,24 @@ class GameActivity : AppCompatActivity() {
         }.start()
     }
 
-    fun BackgroundMusic() {
+    private fun backgroundMusic() {
         mpBackground = MediaPlayer.create(this, R.raw.audio)
         mpBackground.start()
     }
 
-    fun DecompteMusic(){
+    private fun decompteMusic(){
         mpDecompte = MediaPlayer.create(this, R.raw.decompte)
         mpDecompte.start()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if(backgroundIsPause)
+        {
+            mpBackground = MediaPlayer.create(this, R.raw.audio)
+            mpBackground.start()
+            viewModel.startRegisterListener()
+        }
     }
 
     override fun onPause() {
@@ -113,11 +119,9 @@ class GameActivity : AppCompatActivity() {
         if(mpBackground.isPlaying)
         {
             mpBackground.stop()
+            backgroundIsPause = true
         }
-        if(mpDecompte.isPlaying)
-        {
-            mpDecompte.stop()
-        }
+
         viewModel.stopRegisterListener()
     }
 
@@ -178,8 +182,6 @@ class GameActivity : AppCompatActivity() {
             putExtra("scoreParty", score.text.toString())
         }
         startActivity(intent)
-        mpBackground.stop()
-        mpDecompte.stop()
         finish()
     }
 
