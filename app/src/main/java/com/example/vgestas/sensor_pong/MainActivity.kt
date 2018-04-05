@@ -106,10 +106,8 @@ class MainActivity : AppCompatActivity() {
                     index ++
                 }
 
-
                 ruleTitle.text = listTitle.get(index).toString()
                 ruleText.text = listText.get(index).toString()
-
         })
         dialog.setView(dialogView)
         dialog.setCancelable(false)

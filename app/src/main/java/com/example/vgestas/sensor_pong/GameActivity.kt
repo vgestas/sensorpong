@@ -1,6 +1,7 @@
 package com.example.vgestas.sensor_pong
 
 import android.arch.lifecycle.Observer
+import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
@@ -11,6 +12,7 @@ import android.media.MediaPlayer
 import android.os.CountDownTimer
 import java.util.concurrent.TimeUnit
 import android.graphics.Point
+import android.os.Vibrator
 import android.view.View.GONE
 import kotlinx.android.synthetic.main.activity_result.*
 
@@ -86,6 +88,8 @@ class GameActivity : AppCompatActivity() {
                 if(TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) <= 5)
                 {
                     timerScreen.setTextColor(Color.parseColor("#F70101"))
+                    val vibratorService = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+                    vibratorService.vibrate(500)
                 }
             }
         }.start()

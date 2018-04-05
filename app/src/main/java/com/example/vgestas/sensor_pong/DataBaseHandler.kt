@@ -2,7 +2,6 @@ package com.example.vgestas.sensor_pong
 
 import android.content.ContentValues
 import android.content.Context
-import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import android.widget.Toast
@@ -49,8 +48,6 @@ class DataBaseHandler (private val context: Context) : SQLiteOpenHelper(context,
 
         db.close()
     }
-
-
 
     fun getAllScore(): MutableList<Score> {
         var listScore: MutableList<Score> = ArrayList()
