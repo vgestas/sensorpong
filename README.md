@@ -67,21 +67,21 @@ Et vous souhaite une bonne partie de Sensor Pong !
 # SensorPong
 
 ## Presentation of the game
-Sensor Pong is an attractive game accessible to all. The parties are fast, they last only **15 seconds**.
-The goal of the game is to move the ball up and down the screen and vice versa without touching the right and left edges. To do this, simply tilt the screen to move the ball.
+Sensor Pong is an attractive game accessible to all. The game doesn't last long, only **15 seconds**.
+The aim of the game is to move the ball up and down the screen and vice versa without touching the right and left edges. To do this, simply tilt the screen to move the ball.
 
 
-#### Count of points
+#### Score
 The point system is very simple:
-- You mark **100 points** by alternately touching the top and bottom edge of the screen
-- You lose **1** points each time you touch the right and left edges of the screen. Your score decreases as long as you stay against one of these edges
+- You mark **100 points** by alternately touching the top and bottom edges of the screen
+- You lose **1** point each time you touch the right or left edges of the screen. Your score decreases as long as you stay against one of these edges
 
 
 #### Result
- At the end of a game, enter your nickname and consult the first three of the ranking (before your game).
+ At the end of a game, enter your pseudo and consult the first three of the rankings (before you play).
  To access the complete ranking, simply press the information button.
 To replay click on the `Replay` button
-The `Home` button takes you back to the homepage with the updated ranking
+The `Home` button takes you back to the homepage with the updated rankings
 
 #### Conduct of a game
  - The player starts by clicking on the `Play` button on the home page.
@@ -91,7 +91,7 @@ The `Home` button takes you back to the homepage with the updated ranking
 ## Functionality
 The user has access to several features:
 - On the home screen: he can consult the rules or play a game
-- On the result screen: he can see the complete ranking, see his own ranking, replay a game or return to the homepage.
+- On the result screen: he can see the complet ranking, see his own ranking, replay a game or return to the homepage.
 
 ## Technical aspects
 - We decided to block the application in portrait mode. The purpose of the application being to move the ball up and down, it would have been easier to score points in landscape mode and this is not the goal we were looking for.
@@ -102,23 +102,23 @@ The user has access to several features:
 ## Group work
 The project is carried out in several phases:
 - Reflection phase: find the idea of the application and choose the sensor that will be used
-- Work on paper: definition of the models useful to the application, of the table (and its attributes) present in the database, models of the interfaces
+- Work on paper: definition of the models useful for the application, of the table (and its attributes) present in the database, models of the interfaces
 - Development work: open space work at the IUT and at home for the development of the application
 - Meeting: at the beginning of the afternoon, an update was made to confirm the work done and to define the tasks to be performed during the next phase of development
-- Tools used: Git for instant code sharing and Facebook when working at home for communication. Android Studio for development. Personal smartphones and emulators for deployment testing.
+- Tools used: Git for instant code sharing and Facebook when working at home for to communicate. Android Studio to develop. Personal smartphones and emulators for deployment testings.
 
-## Proposed developments
+## Evolution proposal
 - Increase the area of point loss over time.
 - Have several levels of difficulty: compared to the time of the game, the speed of the ball, etc ...
 - To be able to consult the classification according to a precise lapse of time: the classification by day, week, month or year.
 - Can change the background music in the options.
-- Can reset the database to erase all scores.
+- Can reset the database to erase all the scores.
 
 ## Credit
 The Owl team is composed of:
 - Gestas Vincent
 - Grulois Clément
-- Lemarchand - Fremont Olivier
+- Lemarchand--Fremont Olivier
 
-And wish you a good part of Sensor Pong!
+And wish you a good game of Sensor Pong!
 
