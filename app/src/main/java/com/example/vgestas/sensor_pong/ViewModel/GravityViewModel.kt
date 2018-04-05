@@ -12,7 +12,7 @@ import com.example.vgestas.sensor_pong.Model.GravityModel
 
 class GravityViewModel(application: Application, val model: GravityModel = GravityModel()) : AndroidViewModel(application), SensorEventListener {
 
-    //Statement of Gravity Sensor to Manage the View in GameActivity
+    // Declare the sensor manager to manage the view of GameActivity
     private val sensorManager: SensorManager by lazy {
         application.getSystemService(Context.SENSOR_SERVICE) as SensorManager
     }

@@ -40,7 +40,7 @@ class ResultActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_result)
 
-        //Observe which initializes the entered username
+        // Watch when username is entered
         viewModelScore.events.observe(this, Observer<ScoreEvent> { event ->
             when (event) {
                 is ScoreOk -> refreshUsername()
@@ -48,11 +48,11 @@ class ResultActivity : AppCompatActivity() {
             }
         })
 
-        //Retrieving the score of the game that has just been played
+        //Retrieving the score of the last game
         viewModelScore.setScoreParty(intent.getStringExtra("scoreParty").toInt())
         scoreParty.text = viewModelScore.model.score.toString()
 
-        //Method that opens an alert to enter a username
+        // Opens an alert to enter a username
         openAlertUsername()
 
         //Initialize the ranking and display it
@@ -124,7 +124,7 @@ class ResultActivity : AppCompatActivity() {
         })
     }
 
-    //Method that displays an alert to enter the username
+    // Displays an alert to enter the username
     private fun openAlertUsername() {
         val dialog = AlertDialog.Builder(this)
         val dialogView = layoutInflater.inflate(R.layout.custom_dialog, null)
@@ -155,7 +155,7 @@ class ResultActivity : AppCompatActivity() {
         Log.d("Error", message)
     }
 
-    //Method that refreshes the username on the UI
+    // Refreshes the username on the UI
     private fun refreshUsername() {
         usernameParty.text = viewModelScore.model.username
     }

@@ -27,7 +27,7 @@ class RankingAdapter(private val myDataset: MutableList<Score> = mutableListOf()
         holder.itemView.dateRanking.text = myDataset[position].date
         holder.itemView.rankingPlace.text = (position + 1).toString() + "."
 
-        //Lets highlight the place in the ranking of the game that has just been played
+        //Lets highlight the place in the ranking of the last game
         if (position == rankingUser - 1) {
             holder.itemView.layoutRanking.setBackgroundColor(Color.parseColor("#f39500"))
             holder.itemView.usernameRanking.setTextColor(Color.parseColor("#FFFFFF"))
@@ -51,7 +51,7 @@ class RankingAdapter(private val myDataset: MutableList<Score> = mutableListOf()
         notifyDataSetChanged()
     }
 
-    //Retrieves the ranking of the game that has just been played
+    //Retrieves the ranking of the last game
     fun setRanking(rankingUserParty: Int) {
         rankingUser = rankingUserParty
     }

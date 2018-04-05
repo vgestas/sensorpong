@@ -16,7 +16,7 @@ val COL_DATE = "Date"
 
 class DataBaseHandler(private val context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null, 1) {
 
-    //Creating the table
+    //Create table
     override fun onCreate(db: SQLiteDatabase?) {
         val createTable = "CREATE TABLE " + TABLE_NAME + " (" +
                 COL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
@@ -30,7 +30,7 @@ class DataBaseHandler(private val context: Context) : SQLiteOpenHelper(context, 
     override fun onUpgrade(p0: SQLiteDatabase?, p1: Int, p2: Int) {
     }
 
-    //inserting data
+    //insert data
     fun insertData(score: Score) {
         val db = this.writableDatabase
         var contentValues = ContentValues()
@@ -103,7 +103,7 @@ class DataBaseHandler(private val context: Context) : SQLiteOpenHelper(context, 
         return listBestScore
     }
 
-    //Recovery of the ranking of the game that has just been played
+    //Recovery of the ranking of the last game
     fun getRankingParty(): Int {
         val listScore: MutableList<Score> = this.getAllScore()
         val db = this.readableDatabase

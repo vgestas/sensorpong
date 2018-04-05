@@ -54,10 +54,10 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
-    //Displays an alert containing rules and information
+    // Show rules and information
     private fun viewRules() {
 
-        //We recover the strings to display in the String file
+        //get values from the string file
         var index: Int = 0
         val listTitle: ArrayList<String> = arrayListOf()
         listTitle.add(getString(R.string.presentation))

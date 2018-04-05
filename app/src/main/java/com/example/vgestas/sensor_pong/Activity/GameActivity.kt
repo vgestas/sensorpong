@@ -21,7 +21,7 @@ class GameActivity : AppCompatActivity() {
 
     private lateinit var mp: MediaPlayer
 
-    //Allows the player to go up and down alternately
+    // save if the player must touch the top or the bottom of  the screen
     private var touch_up: Boolean = false
 
     var timer: CountDownTimer? = null

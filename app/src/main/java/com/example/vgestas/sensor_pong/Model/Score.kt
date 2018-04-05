@@ -32,17 +32,17 @@ class Score {
     }
 
 
-    //Updating score
+    //Update score
     fun updateScore(valeur: Int) {
         score = score + valeur
     }
 
-    //Updating username
+    //Update username
     fun updateUsername(username: String) {
         this.username = username
     }
 
-    //Set the score of the game that has just been played
+    //Set the score of the game
     fun setScoreParty(score: Int) {
         this.score = score
     }
