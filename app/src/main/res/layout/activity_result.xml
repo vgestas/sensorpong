@@ -7,7 +7,7 @@
     tools:context="com.example.vgestas.sensor_pong.Activity.ResultActivity">
 
     <LinearLayout
-        android:id="@+id/layoutClassemnt"
+        android:id="@+id/layoutRanking"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
@@ -47,7 +47,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.25"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/layoutClassemnt" />
+        app:layout_constraintTop_toBottomOf="@+id/layoutRanking" />
 
     <TextView
         android:id="@+id/textView3"
@@ -85,7 +85,7 @@
         android:textColor="#000000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView2"
-        app:layout_constraintTop_toBottomOf="@+id/layoutClassemnt" />
+        app:layout_constraintTop_toBottomOf="@+id/layoutRanking" />
 
     <TextView
         android:id="@+id/usernameFirst"
@@ -154,7 +154,7 @@
         android:gravity="center"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/layoutClassemnt"
+        app:layout_constraintTop_toTopOf="@+id/layoutRanking"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="0dp">
 

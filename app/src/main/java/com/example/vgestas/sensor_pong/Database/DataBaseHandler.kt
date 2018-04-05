@@ -15,6 +15,8 @@ val COL_USERNAME = "Username"
 val COL_DATE = "Date"
 
 class DataBaseHandler(private val context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null, 1) {
+
+    //Creating the table
     override fun onCreate(db: SQLiteDatabase?) {
         val createTable = "CREATE TABLE " + TABLE_NAME + " (" +
                 COL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
@@ -28,6 +30,7 @@ class DataBaseHandler(private val context: Context) : SQLiteOpenHelper(context, 
     override fun onUpgrade(p0: SQLiteDatabase?, p1: Int, p2: Int) {
     }
 
+    //inserting data
     fun insertData(score: Score) {
         val db = this.writableDatabase
         var contentValues = ContentValues()
@@ -40,11 +43,10 @@ class DataBaseHandler(private val context: Context) : SQLiteOpenHelper(context, 
         } else {
             Toast.makeText(context, "Success", Toast.LENGTH_LONG).show()
         }
-
-
         db.close()
     }
 
+    //Score Recovery
     fun getAllScore(): MutableList<Score> {
         var listScore: MutableList<Score> = ArrayList()
         val db = this.readableDatabase
@@ -71,6 +73,7 @@ class DataBaseHandler(private val context: Context) : SQLiteOpenHelper(context, 
     }
 
 
+    //Retrieving the first 3 scores to display them on the home page and on the result page
     fun getFirstScore(): MutableList<Score> {
         var listBestScore: MutableList<Score> = ArrayList()
         var listScore: MutableList<Score> = ArrayList()
@@ -100,6 +103,7 @@ class DataBaseHandler(private val context: Context) : SQLiteOpenHelper(context, 
         return listBestScore
     }
 
+    //Recovery of the ranking of the game that has just been played
     fun getRankingParty(): Int {
         val listScore: MutableList<Score> = this.getAllScore()
         val db = this.readableDatabase
@@ -111,7 +115,6 @@ class DataBaseHandler(private val context: Context) : SQLiteOpenHelper(context, 
         }
 
         var rankingParty: Int = 0
-
 
         listScore.sortByDescending { it.score }
 

@@ -39,17 +39,26 @@ class ResultActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_result)
+
+        //Observe which initializes the entered username
+        viewModelScore.events.observe(this, Observer<ScoreEvent> { event ->
+            when (event) {
+                is ScoreOk -> refreshUsername()
+                is ScoreError -> showError("Score error !")
+            }
+        })
+
+        //Retrieving the score of the game that has just been played
         viewModelScore.setScoreParty(intent.getStringExtra("scoreParty").toInt())
+        scoreParty.text = viewModelScore.model.score.toString()
 
+        //Method that opens an alert to enter a username
+        openAlertUsername()
 
-        openAlert()
-
+        //Initialize the ranking and display it
         val context = this
-
         val db = DataBaseHandler(context)
-
         val list: MutableList<Score> = db.getFirstScore()
-
         if (list.size > 0) {
             firstScoreRanking.text = list.get(0).score.toString()
             usernameFirst.text = list.get(0).username
@@ -72,28 +81,23 @@ class ResultActivity : AppCompatActivity() {
         }
 
 
-        scoreParty.text = viewModelScore.model.score.toString()
-
+        //Back MainActivity
         home.setOnClickListener({
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
             finish()
         })
 
+        //Back GameActivity
         replay.setOnClickListener({
             val intent = Intent(this, GameActivity::class.java)
             startActivity(intent)
             finish()
         })
 
-        viewModelScore.events.observe(this, Observer<ScoreEvent> { event ->
-            when (event) {
-                is ScoreOk -> refreshUsername()
-                is ScoreError -> showError("Score error !")
-            }
-        })
 
-        layoutClassemnt.setOnClickListener({
+        //displays an alert containing the entire ranking
+        layoutRanking.setOnClickListener({
 
             val dialog = AlertDialog.Builder(this)
             val dialogView = layoutInflater.inflate(R.layout.dialog_ranking, null)
@@ -120,7 +124,8 @@ class ResultActivity : AppCompatActivity() {
         })
     }
 
-    private fun openAlert() {
+    //Method that displays an alert to enter the username
+    private fun openAlertUsername() {
         val dialog = AlertDialog.Builder(this)
         val dialogView = layoutInflater.inflate(R.layout.custom_dialog, null)
         val usernameEdit = dialogView.findViewById<EditText>(R.id.usernameEdit)
@@ -150,11 +155,12 @@ class ResultActivity : AppCompatActivity() {
         Log.d("Error", message)
     }
 
+    //Method that refreshes the username on the UI
     private fun refreshUsername() {
         usernameParty.text = viewModelScore.model.username
     }
 
-
+    //Back to MainAtivity
     override fun onBackPressed() {
         super.onBackPressed()
         val intent = Intent(this, MainActivity::class.java)

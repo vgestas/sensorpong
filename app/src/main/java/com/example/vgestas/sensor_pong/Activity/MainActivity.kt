@@ -18,12 +18,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        //Initialize the ranking and display it
         val context = this
-
         val db = DataBaseHandler(context)
-
         val list: MutableList<Score> = db.getFirstScore()
-
         if (list.size > 0) {
             firstScore.text = list.get(0).score.toString()
             userNameScoreOne.text = list.get(0).username
@@ -56,8 +54,10 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
+    //Displays an alert containing rules and information
     private fun viewRules() {
 
+        //We recover the strings to display in the String file
         var index: Int = 0
         val listTitle: ArrayList<String> = arrayListOf()
         listTitle.add(getString(R.string.presentation))

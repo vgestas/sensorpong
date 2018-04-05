@@ -20,8 +20,9 @@ import java.util.concurrent.TimeUnit
 class GameActivity : AppCompatActivity() {
 
     private lateinit var mp: MediaPlayer
-    private var toucheHaut: Boolean = false
-    private var toucheBas: Boolean = false
+
+    //Allows the player to go up and down alternately
+    private var touch_up: Boolean = false
 
     var timer: CountDownTimer? = null
     var timerBeforeParty: CountDownTimer? = null
@@ -127,18 +128,16 @@ class GameActivity : AppCompatActivity() {
     private fun setTranslationY() {
         rotationView.translationY = (mainContainer.height / 2 * viewModel.model.yAxisTranslation)
         if (viewModel.model.yAxisTranslation >= 0.75) {
-            if (!toucheBas) {
+            if (touch_up) {
                 viewModelScore.updateScore(100)
                 rotationView.setBackgroundResource(R.drawable.ballsp_min)
-                toucheBas = true
-                toucheHaut = false
+                touch_up = false
             }
         } else if (viewModel.model.yAxisTranslation <= -0.75) {
-            if (!toucheHaut) {
+            if (!touch_up) {
                 viewModelScore.updateScore(100)
                 rotationView.setBackgroundResource(R.drawable.ballsp_inv_min)
-                toucheHaut = true
-                toucheBas = false
+                touch_up = true
             }
         }
     }

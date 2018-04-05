@@ -11,20 +11,24 @@ class ScoreViewModel(application: Application, val model: Score = Score()) : And
     val events: MutableLiveData<ScoreEvent> = MutableLiveData()
 
 
+    //Update the score on the UI
     fun updateScore(valeur: Int) {
         model.updateScore(valeur)
         events.value = ScoreOk(model)
     }
 
+    //Update the username on the UI
     fun updateUsername(username: String) {
         model.updateUsername(username)
         events.value = ScoreOk(model)
     }
 
+    //Insert user into database
     fun insertUser(context: Context, score: Int) {
         model.insertUser(context, score)
     }
 
+    //Set the score into model
     fun setScoreParty(score: Int) {
         model.setScoreParty(score)
     }
