@@ -19,7 +19,7 @@ Le système de point est très simple :
  A la fin d\'une partie, saisissez votre pseudo et consulter les trois premiers du classement (avant votre partie).
  Pour accéder au classement complet, il vous suffit d\'appuyer sur le `i` d\'information.
 Pour rejouer cliquez sur le bouton `Replay`
-Le bouton `Home` vous renvoit à la page d\'accueil avec le classement actualisé
+Le bouton `Home` vous renvoit à la page d'accueil avec le classement actualisé
 
 #### Déroulement d'une partie 
  - Le joueur lance la en cliquant sur le bouton `Jouer` sur la page d'accueil. 
@@ -37,6 +37,13 @@ L'utilisateur à accès à plusieurs fonctionnalités :
 - Les deux modèles sont liés à leur ViewModel respectif.
 - La base de données (SQLite) est en locale sur le téléphone de l'utilisateur. Elle comporte une seule table score. Cette table contient 4 attributs : un id, un score (celui de la partie jouée), un username (celui du joueur) et la date (celle du jour de la partie).
 
+## Travail de groupe
+Le projet c'est effectué en plusieurs phases : 
+- Phase de réflexion : trouver l'idée de l'application et choisir le capteur qui sera utilisé
+- Travail sur papier : définition des modèles utiles à l'application, de la table (et de ses attributs) présente dans la base de données, maquettes des interfaces
+- Travail de développement : travail en open space à l'IUT et à domicile pour le développement de l'application
+- Réunion : à chaque début d'après midi une mise au point a été faite pour confirmer le travail effectué et pour définir les tâches à effectuer lors de la prochaine phase de développement
+- Outils utilisés : Git pour le partage du code en instantanné et Facebook lors du travail à domicile pour la communication. Android Studio pour le développement. Les smartphones personnels et des émulateurs pour les tests de déploiement.
 
 ## Evolutions envisagées
 - Augmentation de la zone de perte de point au fil du temps.
@@ -92,8 +99,16 @@ The user has access to several features:
 - Both models are linked to their respective ViewModel.
 - The database (SQLite) is local on the user's phone. It has only one score table. This table contains 4 attributes: an id, a score (the one of the game played), a username (the player's) and the date (the day of the game).
 
+## Group work
+The project is carried out in several phases:
+- Reflection phase: find the idea of the application and choose the sensor that will be used
+- Work on paper: definition of the models useful to the application, of the table (and its attributes) present in the database, models of the interfaces
+- Development work: open space work at the IUT and at home for the development of the application
+- Meeting: at the beginning of the afternoon, an update was made to confirm the work done and to define the tasks to be performed during the next phase of development
+- Tools used: Git for instant code sharing and Facebook when working at home for communication. Android Studio for development. Personal smartphones and emulators for deployment testing.
+
 ## Proposed developments
-- Increase the area of ​​point loss over time.
+- Increase the area of point loss over time.
 - Have several levels of difficulty: compared to the time of the game, the speed of the ball, etc ...
 - To be able to consult the classification according to a precise lapse of time: the classification by day, week, month or year.
 - Can change the background music in the options.
