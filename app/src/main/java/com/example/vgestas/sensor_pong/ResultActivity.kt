@@ -14,6 +14,7 @@ import kotlinx.android.synthetic.main.activity_result.*
 import android.arch.lifecycle.Observer
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.widget.Toast
 
 class ResultActivity: AppCompatActivity()
 {
@@ -111,10 +112,7 @@ class ResultActivity: AppCompatActivity()
             customDialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener({
                 customDialog.dismiss()
             })
-
-
         })
-
     }
 
     private fun openAlert()
@@ -123,18 +121,28 @@ class ResultActivity: AppCompatActivity()
         val dialogView = layoutInflater.inflate(R.layout.custom_dialog, null)
         val usernameEdit = dialogView.findViewById<EditText>(R.id.usernameEdit)
         dialog.setView(dialogView)
+        dialog.setTitle("Saisissez votre pseudo !")
         dialog.setCancelable(false)
         dialog.setPositiveButton("Validate", { dialogInterface: DialogInterface, i: Int -> })
         val customDialog = dialog.create()
         customDialog.show()
         customDialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener({
+
+        val msg = usernameEdit.text.trim().toString()
+        if(msg.isEmpty())
+        {
+            Toast.makeText(this, "Saisir un pseudo svp", Toast.LENGTH_LONG).show()
+        }
+        else
+        {
             viewModelScore.updateUsername(usernameEdit.text.toString())
             viewModelScore.insertUser(this, scoreParty.text.toString().toInt())
             val db = DataBaseHandler(this)
             rankingUser = db.getRankingParty()
             rankingParty.text = rankingUser.toString()
             customDialog.dismiss()
-        })
+        }
+    })
     }
 
     private fun showError(message: String) {

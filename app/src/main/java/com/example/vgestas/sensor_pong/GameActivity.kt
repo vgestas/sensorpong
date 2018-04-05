@@ -16,14 +16,6 @@ import kotlinx.android.synthetic.main.activity_result.*
 
 
 class GameActivity : AppCompatActivity() {
-    private val viewModel: GravityViewModel by lazy {
-        GravityViewModel(application)
-    }
-
-    private val viewModelScore: ScoreViewModel by lazy{
-        ScoreViewModel(application)
-    }
-
 
     private lateinit var mp: MediaPlayer
     private var toucheHaut:Boolean = false
@@ -35,6 +27,13 @@ class GameActivity : AppCompatActivity() {
 
     var timerBeforeParty: CountDownTimer? = null
 
+    private val viewModel: GravityViewModel by lazy {
+        GravityViewModel(application)
+    }
+
+    private val viewModelScore: ScoreViewModel by lazy{
+        ScoreViewModel(application)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
