@@ -25,6 +25,7 @@ class Score
     }
 
     constructor(){
+        score = 0
     }
 
     fun insertUser(context:Context, score:Int)

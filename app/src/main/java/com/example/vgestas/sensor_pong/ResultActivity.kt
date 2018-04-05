@@ -25,6 +25,8 @@ class ResultActivity: AppCompatActivity()
         RankingAdapter()
     }
 
+    var rankingUser:Int = 0
+
     @TargetApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -98,6 +100,7 @@ class ResultActivity: AppCompatActivity()
 
             val listScore:MutableList<Score> = db.getAllScore()
             viewAdapter.setScore(listScore.toMutableList())
+            viewAdapter.setRanking(rankingUser)
 
             dialog.setView(dialogView)
             dialog.setCancelable(false)
@@ -128,7 +131,8 @@ class ResultActivity: AppCompatActivity()
             viewModelScore.updateUsername(usernameEdit.text.toString())
             viewModelScore.insertUser(this, scoreParty.text.toString().toInt())
             val db = DataBaseHandler(this)
-            rankingParty.text = db.getRankingParty().toString()
+            rankingUser = db.getRankingParty()
+            rankingParty.text = rankingUser.toString()
             customDialog.dismiss()
         })
     }
