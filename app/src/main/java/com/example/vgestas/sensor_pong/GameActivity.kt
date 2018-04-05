@@ -2,6 +2,7 @@ package com.example.vgestas.sensor_pong
 
 import android.arch.lifecycle.Observer
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
@@ -83,6 +84,10 @@ class GameActivity : AppCompatActivity() {
             override fun onTick(millisUntilFinished: Long) {
 
                 timerScreen.text = (TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished)).toString()
+                if(TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) <= 5)
+                {
+                    timerScreen.setTextColor(Color.parseColor("#F70101"))
+                }
             }
         }.start()
     }

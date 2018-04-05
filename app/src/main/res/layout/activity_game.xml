@@ -19,13 +19,17 @@
     <TextView
         android:id="@+id/score"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:textSize="18dp"
+        android:textStyle="bold"/>
 
     <TextView
         android:id="@+id/timerScreen"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="right"/>
+        android:layout_gravity="right"
+        android:textSize="18dp"
+        android:textStyle="bold"/>
 
     <TextView
         android:id="@+id/timerStartParty"
