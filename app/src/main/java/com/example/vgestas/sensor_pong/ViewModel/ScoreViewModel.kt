@@ -1,9 +1,10 @@
-package com.example.vgestas.sensor_pong
+package com.example.vgestas.sensor_pong.ViewModel
 
 import android.app.Application
 import android.arch.lifecycle.AndroidViewModel
 import android.arch.lifecycle.MutableLiveData
 import android.content.Context
+import com.example.vgestas.sensor_pong.Model.Score
 
 
 class ScoreViewModel(application: Application, val model: Score = Score()) : AndroidViewModel(application) {

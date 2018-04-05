@@ -1,4 +1,4 @@
-package com.example.vgestas.sensor_pong
+package com.example.vgestas.sensor_pong.Activity
 
 import android.arch.lifecycle.Observer
 import android.content.Context
@@ -11,6 +11,8 @@ import android.os.Vibrator
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.View.GONE
+import com.example.vgestas.sensor_pong.*
+import com.example.vgestas.sensor_pong.ViewModel.*
 import kotlinx.android.synthetic.main.activity_game.*
 import java.util.concurrent.TimeUnit
 

@@ -1,10 +1,11 @@
-package com.example.vgestas.sensor_pong
+package com.example.vgestas.sensor_pong.Database
 
 import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import android.widget.Toast
+import com.example.vgestas.sensor_pong.Model.Score
 
 val DATABASE_NAME = "SensorPongBD"
 val TABLE_NAME = "ScoreTable"
@@ -102,7 +103,7 @@ class DataBaseHandler(private val context: Context) : SQLiteOpenHelper(context, 
     fun getRankingParty(): Int {
         val listScore: MutableList<Score> = this.getAllScore()
         val db = this.readableDatabase
-        val query = "Select Max($COL_ID) from $TABLE_NAME"
+        val query = "Select Max(${COL_ID}) from ${TABLE_NAME}"
         val result = db.rawQuery(query, null)
         var idParty: Int = 0
         if (result.moveToFirst()) {

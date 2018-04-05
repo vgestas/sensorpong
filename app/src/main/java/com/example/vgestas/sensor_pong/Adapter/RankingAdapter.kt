@@ -1,10 +1,12 @@
-package com.example.vgestas.sensor_pong
+package com.example.vgestas.sensor_pong.Adapter
 
 import android.graphics.Color
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.vgestas.sensor_pong.Model.Score
+import com.example.vgestas.sensor_pong.R
 import kotlinx.android.synthetic.main.row_ranking.view.*
 
 

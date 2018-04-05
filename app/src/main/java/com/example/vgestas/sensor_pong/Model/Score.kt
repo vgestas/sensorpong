@@ -1,6 +1,7 @@
-package com.example.vgestas.sensor_pong
+package com.example.vgestas.sensor_pong.Model
 
 import android.content.Context
+import com.example.vgestas.sensor_pong.Database.DataBaseHandler
 import java.text.SimpleDateFormat
 import java.util.*
 

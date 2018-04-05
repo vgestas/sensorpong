@@ -1,4 +1,4 @@
-package com.example.vgestas.sensor_pong
+package com.example.vgestas.sensor_pong.Activity
 
 import android.annotation.TargetApi
 import android.arch.lifecycle.Observer
@@ -14,6 +14,14 @@ import android.util.Log
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import com.example.vgestas.sensor_pong.*
+import com.example.vgestas.sensor_pong.Adapter.RankingAdapter
+import com.example.vgestas.sensor_pong.Database.DataBaseHandler
+import com.example.vgestas.sensor_pong.Model.Score
+import com.example.vgestas.sensor_pong.ViewModel.ScoreError
+import com.example.vgestas.sensor_pong.ViewModel.ScoreEvent
+import com.example.vgestas.sensor_pong.ViewModel.ScoreOk
+import com.example.vgestas.sensor_pong.ViewModel.ScoreViewModel
 import kotlinx.android.synthetic.main.activity_result.*
 
 class ResultActivity : AppCompatActivity() {

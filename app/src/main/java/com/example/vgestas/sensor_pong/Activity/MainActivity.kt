@@ -1,4 +1,4 @@
-package com.example.vgestas.sensor_pong
+package com.example.vgestas.sensor_pong.Activity
 
 import android.content.DialogInterface
 import android.content.Intent
@@ -7,6 +7,9 @@ import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import android.widget.ImageView
 import android.widget.TextView
+import com.example.vgestas.sensor_pong.Database.DataBaseHandler
+import com.example.vgestas.sensor_pong.R
+import com.example.vgestas.sensor_pong.Model.Score
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
