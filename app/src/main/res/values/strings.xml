@@ -1,6 +1,14 @@
 <resources>
-    <string name="app_name">sensor-pong</string>
+    <string name="app_name">Sensor Pong</string>
     <string name="Ranking">Classement</string>
+    <string name="Play">Jouer</string>
+    <string name="Reglement">Règlement</string>
+    <string name="Party">Votre partie !</string>
+    <string name="Score">Score</string>
+    <string name="Username">Username</string>
+    <string name="Home">Home</string>
+    <string name="Replay">Replay</string>
+    <string name="Rules">Règles</string>
 
     <string name="presentation">Présentation</string>
     <string name="presentation_text">

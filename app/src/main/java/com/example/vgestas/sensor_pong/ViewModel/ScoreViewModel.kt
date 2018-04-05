@@ -12,8 +12,8 @@ class ScoreViewModel(application: Application, val model: Score = Score()) : And
 
 
     //Update the score on the UI
-    fun updateScore(valeur: Int) {
-        model.updateScore(valeur)
+    fun updateScore(value: Int) {
+        model.updateScore(value)
         events.value = ScoreOk(model)
     }
 
