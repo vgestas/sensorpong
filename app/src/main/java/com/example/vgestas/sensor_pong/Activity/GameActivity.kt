@@ -19,7 +19,8 @@ import java.util.concurrent.TimeUnit
 
 class GameActivity : AppCompatActivity() {
 
-    private lateinit var mp: MediaPlayer
+    private lateinit var mpBackground: MediaPlayer
+    private lateinit var mpDecompte : MediaPlayer
 
     // save if the player must touch the top or the bottom of  the screen
     private var touch_up: Boolean = false
@@ -38,9 +39,7 @@ class GameActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game)
-        mp = MediaPlayer.create(this, R.raw.audio)
 
-        BackgroundMusic()
 
         score.text = viewModelScore.model.score.toString()
 
@@ -63,6 +62,7 @@ class GameActivity : AppCompatActivity() {
 
     private fun startTimerParty() {
         viewModel.startRegisterListener()
+        BackgroundMusic()
 
         timer = object : CountDownTimer(15 * 1000, 1000) {
             override fun onFinish() {
@@ -73,6 +73,7 @@ class GameActivity : AppCompatActivity() {
 
                 timerScreen.text = (TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished)).toString()
                 if (TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) <= 5) {
+                    DecompteMusic()
                     timerScreen.setTextColor(Color.parseColor("#F70101"))
                     val vibratorService = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
                     vibratorService.vibrate(500)
@@ -82,25 +83,41 @@ class GameActivity : AppCompatActivity() {
     }
 
     private fun startTimerBeforeParty() {
+
+        DecompteMusic()
         timerBeforeParty = object : CountDownTimer(3 * 1000, 1000) {
             override fun onFinish() {
+                mpDecompte.stop()
                 startTimerParty()
                 timerStartParty.visibility = GONE
             }
 
             override fun onTick(millisUntilFinished: Long) {
-
                 timerStartParty.text = (TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished)).toString()
             }
         }.start()
     }
 
     fun BackgroundMusic() {
-        mp.start()
+        mpBackground = MediaPlayer.create(this, R.raw.audio)
+        mpBackground.start()
+    }
+
+    fun DecompteMusic(){
+        mpDecompte = MediaPlayer.create(this, R.raw.decompte)
+        mpDecompte.start()
     }
 
     override fun onPause() {
         super.onPause()
+        if(mpBackground.isPlaying)
+        {
+            mpBackground.stop()
+        }
+        if(mpDecompte.isPlaying)
+        {
+            mpDecompte.stop()
+        }
         viewModel.stopRegisterListener()
     }
 
@@ -119,8 +136,12 @@ class GameActivity : AppCompatActivity() {
     private fun setTranslationX() {
         rotationView.translationX = (mainContainer.width / 2 * -viewModel.model.xAxisTranslation)
         if (viewModel.model.xAxisTranslation <= -0.75) {
+            score.setBackgroundColor(Color.parseColor("#CA0000"))
+            score.setTextColor(Color.parseColor("#FFFFFF"))
             viewModelScore.updateScore(-1)
         } else if (viewModel.model.xAxisTranslation >= 0.75) {
+            score.setBackgroundColor(Color.parseColor("#CA0000"))
+            score.setTextColor(Color.parseColor("#FFFFFF"))
             viewModelScore.updateScore(-1)
         }
     }
@@ -129,12 +150,16 @@ class GameActivity : AppCompatActivity() {
         rotationView.translationY = (mainContainer.height / 2 * viewModel.model.yAxisTranslation)
         if (viewModel.model.yAxisTranslation >= 0.75) {
             if (touch_up) {
+                score.setBackgroundColor(Color.parseColor("#04913D"))
+                score.setTextColor(Color.parseColor("#FFFFFF"))
                 viewModelScore.updateScore(100)
                 rotationView.setBackgroundResource(R.drawable.ballsp_min)
                 touch_up = false
             }
         } else if (viewModel.model.yAxisTranslation <= -0.75) {
             if (!touch_up) {
+                score.setBackgroundColor(Color.parseColor("#04913D"))
+                score.setTextColor(Color.parseColor("#FFFFFF"))
                 viewModelScore.updateScore(100)
                 rotationView.setBackgroundResource(R.drawable.ballsp_inv_min)
                 touch_up = true
@@ -148,12 +173,13 @@ class GameActivity : AppCompatActivity() {
     }
 
     private fun finishGame() {
-        mp.stop()
 
         val intent = Intent(this, ResultActivity::class.java).apply {
             putExtra("scoreParty", score.text.toString())
         }
         startActivity(intent)
+        mpBackground.stop()
+        mpDecompte.stop()
         finish()
     }
 

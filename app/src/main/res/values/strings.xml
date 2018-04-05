@@ -35,9 +35,9 @@
     <string name="credit_title">Crédit</string>
     <string name="credit_text">
         La team Hibou est composé de : \n
-        - Gestas Vincent \n
-        - Grulois Clément\n
-        - Lemarchand--Frémont Olivier\n
+        Gestas Vincent \n
+        Grulois Clément\n
+        Lemarchand--Frémont Olivier\n
 
         Et vous souhaite une bonne partie de Sensor Pong !
     </string>
