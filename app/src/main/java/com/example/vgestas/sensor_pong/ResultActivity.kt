@@ -127,6 +127,8 @@ class ResultActivity: AppCompatActivity()
         customDialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener({
             viewModelScore.updateUsername(usernameEdit.text.toString())
             viewModelScore.insertUser(this, scoreParty.text.toString().toInt())
+            val db = DataBaseHandler(this)
+            rankingParty.text = db.getRankingParty().toString()
             customDialog.dismiss()
         })
     }

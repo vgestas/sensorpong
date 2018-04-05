@@ -162,10 +162,6 @@ class GameActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        super.onBackPressed()
-        mp.stop()
-        val intent = Intent(this, MainActivity::class.java)
-        startActivity(intent)
-        finish()
+        //super.onBackPressed()
     }
 }

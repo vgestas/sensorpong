@@ -45,6 +45,9 @@ class DataBaseHandler (private val context: Context) : SQLiteOpenHelper(context,
         {
             Toast.makeText(context, "Success", Toast.LENGTH_LONG).show()
         }
+
+
+        db.close()
     }
 
 
@@ -74,54 +77,6 @@ class DataBaseHandler (private val context: Context) : SQLiteOpenHelper(context,
         return listScore
     }
 
-        fun selectScoreListByUsername(username:String): MutableList<Score>
-        {
-            var listScoreUser: MutableList<Score> = ArrayList()
-            val db = this.readableDatabase
-            val query = "Select * from " + TABLE_NAME + " where " + COL_USERNAME + " LIKE '" + username + "'"
-            val result = db.rawQuery(query, null)
-
-            if(result.moveToFirst())
-            {
-                do
-                {
-                    var score = Score()
-                    score.id = result.getString(result.getColumnIndex(COL_ID)).toInt()
-                    score.username = result.getString(result.getColumnIndex(COL_USERNAME))
-                    score.score = result.getString(result.getColumnIndex(COL_SCORE)).toInt()
-                    score.date = result.getString(result.getColumnIndex(COL_DATE))
-                    listScoreUser.add(score)
-                } while (result.moveToNext())
-            }
-
-        result.close()
-        db.close()
-
-        return listScoreUser
-    }
-
-    fun updateDate()
-    {
-        val db = this.writableDatabase
-        val query = "Select * from " + TABLE_NAME
-        val result = db.rawQuery(query, null)
-
-        if(result.moveToFirst())
-        {
-            do
-            {
-                var cv = ContentValues()
-                cv.put(COL_SCORE, result.getInt(result.getColumnIndex(COL_SCORE)+2))
-                db.update(TABLE_NAME, cv, COL_ID + "=? AND "+ COL_USERNAME + "=?",
-                        arrayOf(result.getString(result.getColumnIndex(COL_ID)),
-                                result.getString(result.getColumnIndex(COL_USERNAME))))
-
-            } while (result.moveToNext())
-        }
-
-        result.close()
-        db.close()
-    }
 
     fun getFirstScore() : MutableList<Score>
     {
@@ -143,21 +98,46 @@ class DataBaseHandler (private val context: Context) : SQLiteOpenHelper(context,
 
             listScore.sortByDescending { it.score }
 
-
-
             var max = 3
             if(listScore.size < 3)
                 max = listScore.size
 
-
-
             listBestScore = listScore.subList(0,max)
-
-
         }
 
         result.close()
         db.close()
         return listBestScore
+    }
+
+    fun getRankingParty(): Int
+    {
+        val listScore: MutableList<Score> = this.getAllScore()
+        val db = this.readableDatabase
+        val query = "Select Max($COL_ID) from $TABLE_NAME"
+        val result = db.rawQuery(query, null)
+        var idParty : Int = 0
+        if(result.moveToFirst())
+        {
+            idParty = result.getString(result.getColumnIndex("Max(ID)")).toInt()
+        }
+
+        var rankingParty:Int = 0
+
+
+        listScore.sortByDescending { it.score }
+
+        for(scoreCourant:Score in listScore)
+        {
+            if(scoreCourant.id == idParty)
+            {
+                rankingParty = listScore.indexOf(scoreCourant) + 1
+                break
+            }
+        }
+
+        result.close()
+        db.close()
+        return rankingParty
     }
 }
