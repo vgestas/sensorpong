@@ -118,9 +118,9 @@ class DataBaseHandler(private val context: Context) : SQLiteOpenHelper(context, 
 
         listScore.sortByDescending { it.score }
 
-        for (scoreCourant: Score in listScore) {
-            if (scoreCourant.id == idParty) {
-                rankingParty = listScore.indexOf(scoreCourant) + 1
+        for (currentScore: Score in listScore) {
+            if (currentScore.id == idParty) {
+                rankingParty = listScore.indexOf(currentScore) + 1
                 break
             }
         }
