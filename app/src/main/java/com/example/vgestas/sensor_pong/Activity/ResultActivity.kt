@@ -145,7 +145,7 @@ class ResultActivity : AppCompatActivity() {
                 viewModelScore.insertUser(this, scoreParty.text.toString().toInt())
                 val db = DataBaseHandler(this)
                 rankingUser = db.getRankingParty()
-                rankingParty.text = rankingUser.toString()
+                rankingParty.text = rankingUser.toString() + "/" + (db.getAllScore().size).toString()
                 customDialog.dismiss()
             }
         })
