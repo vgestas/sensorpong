@@ -1,6 +1,5 @@
 package com.example.vgestas.sensor_pong.Activity
 
-import android.annotation.TargetApi
 import android.arch.lifecycle.Observer
 import android.content.Context
 import android.content.Intent
@@ -20,6 +19,7 @@ class GameActivity : AppCompatActivity() {
 
     private lateinit var mpBackground: MediaPlayer
     private lateinit var mpDecompte : MediaPlayer
+    private lateinit var mpSuccess : MediaPlayer
     private var backgroundIsPause:Boolean = false
     var timer: CountDownTimer? = null
     var timerBeforeParty: CountDownTimer? = null
@@ -104,6 +104,11 @@ class GameActivity : AppCompatActivity() {
         mpDecompte.start()
     }
 
+    private fun SuccessMusic(){
+        mpSuccess = MediaPlayer.create(this, R.raw.ah)
+        mpSuccess.start()
+    }
+
     override fun onResume() {
         super.onResume()
         if(backgroundIsPause)
@@ -154,6 +159,7 @@ class GameActivity : AppCompatActivity() {
         rotationView.translationY = (mainContainer.height / 2 * viewModel.model.yAxisTranslation)
         if (viewModel.model.yAxisTranslation >= 0.75) {
             if (touch_up) {
+                SuccessMusic()
                 score.setBackgroundColor(Color.parseColor("#04913D"))
                 score.setTextColor(Color.parseColor("#FFFFFF"))
                 viewModelScore.updateScore(100)
@@ -162,6 +168,7 @@ class GameActivity : AppCompatActivity() {
             }
         } else if (viewModel.model.yAxisTranslation <= -0.75) {
             if (!touch_up) {
+                SuccessMusic()
                 score.setBackgroundColor(Color.parseColor("#04913D"))
                 score.setTextColor(Color.parseColor("#FFFFFF"))
                 viewModelScore.updateScore(100)
