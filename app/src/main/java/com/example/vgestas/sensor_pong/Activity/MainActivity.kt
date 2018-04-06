@@ -19,8 +19,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         //Initialize the ranking and display it
-        val context = this
-        val db = DataBaseHandler(context)
+        val db = DataBaseHandler(this)
         val list: MutableList<Score> = db.getFirstScore()
         if (list.size > 0) {
             firstScore.text = list.get(0).score.toString()
