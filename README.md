@@ -5,8 +5,8 @@
 # SensorPong
 
 ## Présentation du jeu
-Sensor Pong est un jeu attractif et accessible à tous. Les partis sont rapide, elles durent seulement **15 secondes**.
-Le but du jeu est de faire passer la balle de haut en bas de l\'écran et inversement sans toucher les bords droit et gauche. Pour cela il suffit d'incliner l'écran pour faire bouger la balle.
+Sensor Pong est un jeu attractif et accessible à tous. Les partis sont rapides, elles durent seulement **15 secondes**.
+Le but du jeu est de faire passer la balle de haut en bas de l'écran et inversement sans toucher les bords droit et gauche. Pour cela il suffit d'incliner l'écran pour faire bouger la balle.
 
 
 #### Compte des points
@@ -16,13 +16,13 @@ Le système de point est très simple :
 
 
 #### Résultat
- A la fin d\'une partie, saisissez votre pseudo et consulter les trois premiers du classement (avant votre partie).
- Pour accéder au classement complet, il vous suffit d\'appuyer sur le `i` d\'information.
+ A la fin d'une partie, saisissez votre pseudo et consulter les trois premiers du classement (avant votre partie).
+ Pour accéder au classement complet, il vous suffit d'appuyer sur le `i` d'information.
 Pour rejouer cliquez sur le bouton `Replay`
 Le bouton `Home` vous renvoit à la page d'accueil avec le classement actualisé
 
 #### Déroulement d'une partie 
- - Le joueur lance la en cliquant sur le bouton `Jouer` sur la page d'accueil. 
+ - Le joueur lance la partie en cliquant sur le bouton `Jouer` sur la page d'accueil. 
  - Il joue la partie de SensorPong
  - Sur la page de résultat : il saisit son pseudo, consulte son score et son classement. Il a aussi accès au classement réduit et au classement complet.
 
